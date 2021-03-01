@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -32,7 +34,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.flatpages',
-    #'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,14 +43,20 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'django.contrib.sites',
     'recipe',
+    'users',
+    'api_v1',
+    'widget_tweaks',  # https://pypi.org/project/django-widget-tweaks/
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+     # управление сессиями м/у запросами
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    # связывает пользователей, использующих сессии, запросами
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -82,7 +89,7 @@ WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
+        # "ENGINE": os.environ.get("DB_ENGINE"),
         # 'NAME': os.environ.get('DB_NAME'),
         # 'USER': os.environ.get('POSTGRES_USER'),
         # 'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
@@ -139,4 +146,32 @@ if DEBUG:
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#AUTH_USER_MODEL = 'users.User'
+
+LOGIN_URL = reverse_lazy('login')
+
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+
+LOGOUT_REDIRECT_URL = reverse_lazy('index')
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#     }
+# }
+
+#SITE_ID = os.environ.get('SITE_ID')
 SITE_ID = 1
+OBJECT_PER_PAGE = 6
+
+# #  подключаем движок filebased.EmailBackend (для сброса пароля)
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+#
+# # указываем директорию, в которую будут складываться файлы писем
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")

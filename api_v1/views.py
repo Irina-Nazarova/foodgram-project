@@ -83,24 +83,4 @@ class Purchases(View):
 
         return JsonResponse({'success': True})
 
-# @login_required
-# def download(request):
-#     """скачивание списка покупок"""
-#     # функция, формирующая список покупок
-#     result = generate_shop_list(request)
-#     filename = 'shop_list.txt'
-#     response = HttpResponse(result, content_type='text/plain')
-#     response['Content-Disposition'] = 'attachment; filename={0}'.format(
-#                                                                     filename)
-#     return response
-#
-#
-# def page_not_found(request, exception):
-#     #  переменная exception содержит отладочную информацию,
-#     #  выводить её в шаблон пользовательской страницы 404 не нужно
-#     return render(request, 'misc/404.html', {'path': request.path}, status=404)
-#
-#
-# def server_error(request):
-#     return render(request, 'misc/500.html', status=500)
 
