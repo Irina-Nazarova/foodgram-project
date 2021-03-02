@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
 
-from recipe.models import Recipe, FavoriteRecipe, Follow, User, Purchase
+from recipe.models import Recipe, FavoriteRecipe, Follow, User, Purchase, Ingredient
 
 
 class Favorites(View):
@@ -82,5 +82,18 @@ class Purchases(View):
                                 ).delete()
 
         return JsonResponse({'success': True})
+
+
+class Ingredients(View):
+    """ для автозаполнения поля ингредиентов
+    в форме создания/редактирования рецепта """
+
+    def get(self, request):
+        text = request.GET['query']
+
+        ingredients = list(Ingredient.objects.filter(
+            title__icontains=text).values('name', 'measure'))
+
+        return JsonResponse(ingredients, safe=False)
 
 
