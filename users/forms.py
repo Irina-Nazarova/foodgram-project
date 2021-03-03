@@ -6,11 +6,11 @@ User = get_user_model()
 
 
 class CreationForm(UserCreationForm):
-    first_name = forms.CharField(label="Имя")
-    username = forms.CharField(label="Логин")
-    email = forms.EmailField(label="Электронная почта")
+    first_name = forms.CharField(label="Name")
+    username = forms.CharField(label="Username")
+    email = forms.EmailField(label="Email")
     password2 = None
-    password1 = forms.CharField(widget=forms.PasswordInput, label="Пароль")
+    password1 = forms.CharField(widget=forms.PasswordInput, label="Password")
 
     class Meta:
         model = User
