@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'django.contrib.flatpages',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,9 +44,9 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'django.contrib.sites',
     'recipe',
-    'users',
     'api_v1',
     'widget_tweaks',  # https://pypi.org/project/django-widget-tweaks/
+    #'users',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'recipe.context_processors.counter',
             ],
         },
     },
@@ -152,7 +154,6 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = reverse_lazy('login')
 
@@ -170,8 +171,8 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 SITE_ID = 1
 OBJECT_PER_PAGE = 6
 
-# #  подключаем движок filebased.EmailBackend (для сброса пароля)
-# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-#
-# # указываем директорию, в которую будут складываться файлы писем
-# EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+#  подключаем движок filebased.EmailBackend (для сброса пароля)
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+
+# указываем директорию, в которую будут складываться файлы писем
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
