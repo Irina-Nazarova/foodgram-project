@@ -16,8 +16,8 @@
             </ul>
             <ul class="nav__items list">
                 {% if user.is_authenticated %}
-                    <li class="nav__item"><a href="{# url 'password_change' #}" class="nav__link link">Change Password</a></li>
-                    <li class="nav__item"><a href="{# url 'logout' #}" class="nav__link link">Sign out</a></li>
+                    <li class="nav__item"><a href="{% url 'password_change' %}" class="nav__link link">Change Password</a></li>
+                    <li class="nav__item"><a href="{% url 'logout' %}" class="nav__link link">Sign out</a></li>
                 {% else %}
                     <li class="nav__item"><a href="{% url 'login' %}" class="nav__link link">Log in</a></li>
                     <li class="nav__item"><a href="{% url 'users:signup' %}" class="button button_style_blue">Create my account</a></li>
