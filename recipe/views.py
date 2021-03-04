@@ -6,7 +6,14 @@ from reportlab.pdfgen import canvas
 
 from foodgram.settings import OBJECT_PER_PAGE
 from recipe.forms import RecipeForm
-from recipe.models import User, Recipe, Follow, Purchase, RecipeIngredient, RecipeType
+from recipe.models import (
+    User,
+    Recipe,
+    Follow,
+    Purchase,
+    RecipeIngredient,
+    RecipeType,
+)
 
 
 def index(request):
@@ -16,20 +23,23 @@ def index(request):
     # получаем все теги из БД
     recipe_types = RecipeType.objects.all()
 
-    tag_value = request.GET.getlist('filters')
+    tag_value = request.GET.getlist("filters")
     if tag_value:
-        recipes = Recipe.objects.filter(type__type_name__in=tag_value).distinct()
+        recipes = Recipe.objects.filter(
+            type__type_name__in=tag_value
+        ).distinct()
     else:
         recipes = Recipe.objects.all()
 
     paginator = Paginator(recipes, OBJECT_PER_PAGE)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     page = paginator.get_page(page_number)
-    context = {"page": page,
-               "paginator": paginator,
-               "active_index": active_index,
-               "recipe_types": recipe_types,
-               }
+    context = {
+        "page": page,
+        "paginator": paginator,
+        "active_index": active_index,
+        "recipe_types": recipe_types,
+    }
     return render(request, "index.html", context)
 
 
@@ -37,9 +47,9 @@ def index(request):
 def recipe_create(request):
     """ создание рецепта """
 
-    active_create = True   # для подсвечивания активного раздела
+    active_create = True  # для подсвечивания активного раздела
 
-    if request.method == 'POST':
+    if request.method == "POST":
         # TODO: Добавить ингридиенты, тип (Завтрак, обед, ужин)
         form = RecipeForm(request.POST or None, files=request.FILES or None)
         if form.is_valid():
@@ -69,11 +79,11 @@ def recipe_edit(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if request.method == "POST":
-        form = RecipeForm(request.POST or None,
-                          files=request.FILES or None,
-                          instance=recipe)
+        form = RecipeForm(
+            request.POST or None, files=request.FILES or None, instance=recipe
+        )
         # функция, передающая список ингредиентов
-        #ingredients = get_ingredients(request)
+        # ingredients = get_ingredients(request)
 
         # if not ingredients:
         #     form.add_error(None, 'Add at least one ingredient')
@@ -89,12 +99,13 @@ def recipe_edit(request, recipe_id):
             form.save_m2m()
             return redirect("index")
 
-    form = RecipeForm(request.POST or None,
-                      files=request.FILES or None,
-                      instance=recipe)
+    form = RecipeForm(
+        request.POST or None, files=request.FILES or None, instance=recipe
+    )
 
-    return render(request, 'edit_recipe.html', {
-        'form': form, 'recipe': recipe})
+    return render(
+        request, "edit_recipe.html", {"form": form, "recipe": recipe}
+    )
 
 
 def recipe_delete(request, recipe_id):
@@ -107,20 +118,26 @@ def recipe_delete(request, recipe_id):
     if request.user == recipe.author:
         recipe.delete()
 
-    return redirect('index')
+    return redirect("index")
 
 
 def recipe_view(request, username, recipe_id):
     """ страница просмотра рецепта """
 
-    recipe = get_object_or_404(Recipe, id=recipe_id)  # рецепт который нужно отразить
+    recipe = get_object_or_404(
+        Recipe, id=recipe_id
+    )  # рецепт который нужно отразить
     author = get_object_or_404(User, username=username)  # автор рецепта
 
     # проверяем, подписан ли текущий пользователь на автора
     following = False
     if request.user.is_authenticated:
-        following = Follow.objects.filter(user=request.user, author=author).exists()
-    return render(request, 'recipe_view.html', {'recipe': recipe, 'following': following})
+        following = Follow.objects.filter(
+            user=request.user, author=author
+        ).exists()
+    return render(
+        request, "recipe_view.html", {"recipe": recipe, "following": following}
+    )
 
 
 @login_required
@@ -131,21 +148,23 @@ def favorite_recipes(request, username):
 
     recipe_types = RecipeType.objects.all()
 
-    tag_value = request.GET.getlist('filters')
+    tag_value = request.GET.getlist("filters")
     if tag_value:
-        recipes = Recipe.objects.filter(type__type_name__in=tag_value,
-                                        favorite__user__id=request.user.id).distinct()
+        recipes = Recipe.objects.filter(
+            type__type_name__in=tag_value, favorite__user__id=request.user.id
+        ).distinct()
     else:
         recipes = Recipe.objects.filter(favorite__user__id=request.user.id)
 
     paginator = Paginator(recipes, OBJECT_PER_PAGE)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     page = paginator.get_page(page_number)
-    context = {"page": page,
-               "paginator": paginator,
-               "recipe_types": recipe_types,
-               "active_favorites": active_favorites,
-               }
+    context = {
+        "page": page,
+        "paginator": paginator,
+        "recipe_types": recipe_types,
+        "active_favorites": active_favorites,
+    }
     return render(request, "index.html", context)
 
 
@@ -157,39 +176,52 @@ def profile(request, username):
     following = False  # на кого подписались
     if request.user.is_authenticated:
         following = Follow.objects.filter(
-            user=request.user, author=author).exists()
+            user=request.user, author=author
+        ).exists()
 
     paginator = Paginator(recipes, OBJECT_PER_PAGE)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     page = paginator.get_page(page_number)
 
-    return render(request, 'index.html', {
-        'page': page,
-        'paginator': paginator,
-        'following': following,
-        'author': author},)
+    return render(
+        request,
+        "index.html",
+        {
+            "page": page,
+            "paginator": paginator,
+            "following": following,
+            "author": author,
+        },
+    )
 
 
 @login_required
 def follow_index(request, username):
     """страница мои подписки"""
 
-    active_follow =True   # для подсвечивания активного раздела
+    active_follow = True  # для подсвечивания активного раздела
 
-    user_follow = get_object_or_404(User, username=username)  # кто подписывается
+    user_follow = get_object_or_404(
+        User, username=username
+    )  # кто подписывается
     # авторы, на которых подписан пользователь
     authors = Follow.objects.filter(user=user_follow)
 
     paginator = Paginator(authors, OBJECT_PER_PAGE)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     page = paginator.get_page(page_number)
 
-    return render(request, 'my_follow.html', {
-        'page': page,
-        'paginator': paginator,
-        'user_follow': user_follow,
-        'active_follow': active_follow,
-        'authors': authors},)
+    return render(
+        request,
+        "my_follow.html",
+        {
+            "page": page,
+            "paginator": paginator,
+            "user_follow": user_follow,
+            "active_follow": active_follow,
+            "authors": authors,
+        },
+    )
 
 
 @login_required
@@ -200,8 +232,11 @@ def purchases_index(request):
 
     purchases = Purchase.objects.filter(user=request.user)
 
-    return render(request, 'shop_list.html', {"purchases": purchases,
-                                              "active_purchases": active_purchases},)
+    return render(
+        request,
+        "shop_list.html",
+        {"purchases": purchases, "active_purchases": active_purchases},
+    )
 
 
 def purchases_delete(request, recipe_id):
@@ -213,7 +248,7 @@ def purchases_delete(request, recipe_id):
     # удаляем рецепт из списка
     Purchase.objects.filter(user=request.user, recipe=recipe).delete()
 
-    return redirect('recipes:purchases_index')
+    return redirect("recipes:purchases_index")
 
 
 @login_required
@@ -222,8 +257,8 @@ def download(request):
 
     # Создаем HttpResponse объект соответствующием заголовком
     # application/pdf - говорим браузеру, что загрузится pdf, а не html страница
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="purchases.pdf"'
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = 'attachment; filename="purchases.pdf"'
     # Создаем PDF объект, используя объект ответа как файл
     p = canvas.Canvas(response)
     # Отступ от нижнего края документа
@@ -242,9 +277,8 @@ def download(request):
 
 
 def page_not_found(request, exception):
-    return render(request, 'misc/404.html', {'path': request.path}, status=404)
+    return render(request, "misc/404.html", {"path": request.path}, status=404)
 
 
 def server_error(request):
-    return render(request, 'misc/500.html', status=500)
-
+    return render(request, "misc/500.html", status=500)

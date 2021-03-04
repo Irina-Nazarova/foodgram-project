@@ -21,30 +21,31 @@ from recipe.views import index
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # flatpages
-    path('about/', include('django.contrib.flatpages.urls')),
+    path("about/", include("django.contrib.flatpages.urls")),
     # регистрация и авторизация
-    path('auth/', include("users.urls")),
+    path("auth/", include("users.urls")),
     # если нужного шаблона для /auth не нашлось в файле users.urls —
     # ищем совпадения в файле django.contrib.auth.urls
-    path('auth/', include("django.contrib.auth.urls")),
+    path("auth/", include("django.contrib.auth.urls")),
     # Рецепты
-    path('recipes/', include('recipe.urls')),
+    path("recipes/", include("recipe.urls")),
     # API v1
-    path('api/', include('api_v1.urls')),
+    path("api/", include("api_v1.urls")),
     # Default
-    path('', index, name='index'),
-
+    path("", index, name="index"),
 ]
 
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
 
-    urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(
+        settings.STATIC_URL, document_root=settings.STATIC_ROOT
+    )
 
 
 handler404 = "recipe.views.page_not_found"

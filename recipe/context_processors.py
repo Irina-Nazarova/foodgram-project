@@ -8,4 +8,4 @@ def counter(request):
         count = Purchase.objects.filter(user=request.user).count()
     else:
         count = 0
-    return {'count': count}
+    return {"count": count}

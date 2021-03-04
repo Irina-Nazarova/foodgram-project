@@ -15,97 +15,274 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Ingredient',
+            name="Ingredient",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=5000, unique=True, verbose_name="ingredient's name")),
-                ('measure', models.CharField(max_length=100, verbose_name='measurement unit')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=5000,
+                        unique=True,
+                        verbose_name="ingredient's name",
+                    ),
+                ),
+                (
+                    "measure",
+                    models.CharField(
+                        max_length=100, verbose_name="measurement unit"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Ingredient',
-                'verbose_name_plural': 'Ingredients',
-                'ordering': ['name'],
+                "verbose_name": "Ingredient",
+                "verbose_name_plural": "Ingredients",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='RecipeType',
+            name="RecipeType",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type_name', models.CharField(max_length=25, unique=True)),
-                ('color', models.CharField(default='', editable=False, max_length=10)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("type_name", models.CharField(max_length=25, unique=True)),
+                (
+                    "color",
+                    models.CharField(
+                        default="", editable=False, max_length=10
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Recipe type',
-                'verbose_name_plural': 'Recipe types',
-                'ordering': ['type_name'],
+                "verbose_name": "Recipe type",
+                "verbose_name_plural": "Recipe types",
+                "ordering": ["type_name"],
             },
         ),
         migrations.CreateModel(
-            name='Recipe',
+            name="Recipe",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, verbose_name="recipe's name")),
-                ('description', models.TextField()),
-                ('pub_date', models.DateTimeField(auto_now=True, db_index=True, verbose_name='publishing date')),
-                ('cook_time', models.PositiveSmallIntegerField(default=10, help_text='Add cook time in minutes', verbose_name='cook time')),
-                ('picture', models.ImageField(upload_to='recipe/', verbose_name='picture of the recipe')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recipes', to=settings.AUTH_USER_MODEL)),
-                ('ingredients', models.ManyToManyField(related_name='ingredients', to='recipe.Ingredient')),
-                ('type', models.ManyToManyField(related_name='tag', to='recipe.RecipeType')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=200, verbose_name="recipe's name"
+                    ),
+                ),
+                ("description", models.TextField()),
+                (
+                    "pub_date",
+                    models.DateTimeField(
+                        auto_now=True,
+                        db_index=True,
+                        verbose_name="publishing date",
+                    ),
+                ),
+                (
+                    "cook_time",
+                    models.PositiveSmallIntegerField(
+                        default=10,
+                        help_text="Add cook time in minutes",
+                        verbose_name="cook time",
+                    ),
+                ),
+                (
+                    "picture",
+                    models.ImageField(
+                        upload_to="recipe/",
+                        verbose_name="picture of the recipe",
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="recipes",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "ingredients",
+                    models.ManyToManyField(
+                        related_name="ingredients", to="recipe.Ingredient"
+                    ),
+                ),
+                (
+                    "type",
+                    models.ManyToManyField(
+                        related_name="tag", to="recipe.RecipeType"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Recipe',
-                'verbose_name_plural': 'Recipes',
-                'ordering': ['-pub_date'],
+                "verbose_name": "Recipe",
+                "verbose_name_plural": "Recipes",
+                "ordering": ["-pub_date"],
             },
         ),
         migrations.CreateModel(
-            name='Purchase',
+            name="Purchase",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipe.recipe')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='purchases', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "recipe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="recipe.recipe",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="purchases",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='RecipeIngredient',
+            name="RecipeIngredient",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('weight', models.PositiveSmallIntegerField(default=10, help_text='Add needed weight for the recipe', verbose_name='ingredient weight')),
-                ('ingredient', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='recipe_ingredient', to='recipe.ingredient')),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recipe_ingredient', to='recipe.recipe')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "weight",
+                    models.PositiveSmallIntegerField(
+                        default=10,
+                        help_text="Add needed weight for the recipe",
+                        verbose_name="ingredient weight",
+                    ),
+                ),
+                (
+                    "ingredient",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="recipe_ingredient",
+                        to="recipe.ingredient",
+                    ),
+                ),
+                (
+                    "recipe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="recipe_ingredient",
+                        to="recipe.recipe",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Recipe Ingredient',
-                'verbose_name_plural': 'Recipes Ingredients',
-                'ordering': ['recipe'],
-                'unique_together': {('recipe', 'ingredient')},
+                "verbose_name": "Recipe Ingredient",
+                "verbose_name_plural": "Recipes Ingredients",
+                "ordering": ["recipe"],
+                "unique_together": {("recipe", "ingredient")},
             },
         ),
         migrations.CreateModel(
-            name='Follow',
+            name="Follow",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='following', to=settings.AUTH_USER_MODEL)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='follower', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="following",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="follower",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-id'],
-                'unique_together': {('user', 'author')},
+                "ordering": ["-id"],
+                "unique_together": {("user", "author")},
             },
         ),
         migrations.CreateModel(
-            name='FavoriteRecipe',
+            name="FavoriteRecipe",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='favorite', to='recipe.recipe')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='favorite_by', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "recipe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="favorite",
+                        to="recipe.recipe",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="favorite_by",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Favorite Recipe',
-                'verbose_name_plural': 'Favorite Recipes',
-                'ordering': ['user'],
-                'unique_together': {('recipe', 'user')},
+                "verbose_name": "Favorite Recipe",
+                "verbose_name_plural": "Favorite Recipes",
+                "ordering": ["user"],
+                "unique_together": {("recipe", "user")},
             },
         ),
     ]

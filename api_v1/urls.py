@@ -4,17 +4,29 @@ from api_v1 import views
 
 urlpatterns = [
     # добавление рецепта в избранное
-    path('favorites/', views.Favorites.as_view(), name='add_favorites'),
+    path("favorites/", views.Favorites.as_view(), name="add_favorites"),
     # удаление рецепта из избранного
-    path('favorites/<int:recipe_id>/', views.Favorites.as_view(), name='delete_favorites'),
+    path(
+        "favorites/<int:recipe_id>/",
+        views.Favorites.as_view(),
+        name="delete_favorites",
+    ),
     # запрос на подписку
-    path('subscriptions/', views.Subscribe.as_view(), name='add_follow'),
+    path("subscriptions/", views.Subscribe.as_view(), name="add_follow"),
     # # запрос на отписку
-    path('subscriptions/<int:author_id>/', views.Subscribe.as_view(), name='delete_follow'),
+    path(
+        "subscriptions/<int:author_id>/",
+        views.Subscribe.as_view(),
+        name="delete_follow",
+    ),
     # # добавление в список покупок
-    path('purchases/', views.Purchases.as_view(), name='add_purchases'),
+    path("purchases/", views.Purchases.as_view(), name="add_purchases"),
     # удаление из списка покупок
-    path('purchases/<int:recipe_id>/', views.Purchases.as_view(), name='delete_purchases'),
+    path(
+        "purchases/<int:recipe_id>/",
+        views.Purchases.as_view(),
+        name="delete_purchases",
+    ),
     # автозаполнение поля Ингредиенты при создании нового рецепта
-    path('api/ingredients/', views.Ingredients.as_view(), name='ingredients'),
+    path("api/ingredients/", views.Ingredients.as_view(), name="ingredients"),
 ]
