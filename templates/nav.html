@@ -4,12 +4,12 @@
             <ul class="nav__items list">
                 {% if user.is_authenticated %}
 
-                    <li class="nav__item {% if active_page == 'index' %}nav__item_active{% endif %}"><a href="{% url 'index' %}" class="nav__link link">Recipes</a></li>
+                    <li class="nav__item {% if active_index %}nav__item_active{% endif %}"><a href="{% url 'index' %}" class="nav__link link">Recipes</a></li>
 
-                    <li class="nav__item {% if active_page == 'create' %}nav__item_active{% endif %}"><a href="{% url 'recipes:recipe_create' %}" class="nav__link link">Create Recipe</a></li>
-                    <li class="nav__item {% if active_page == 'favorites' %}nav__item_active{% endif %}"><a href="{% url 'recipes:favorite_recipes' user.username %}" class="nav__link link">Favorites</a></li>
-                    <li class="nav__item {% if active_page == 'shopping_list' %}nav__item_active{% endif %}"><a href="{% url 'recipes:follow_index' user.username %}" class="nav__link link">My subscriptions</a></li>
-                    <li class="nav__item {% if not disable %}nav__item_disabled{% endif %}"><a href="{% url 'recipes:purchases_index' %}" class="nav__link link">Shopping list<span class="badge badge_style_blue nav__badge" id="counter">{{ count }}</span></a></li>
+                    <li class="nav__item {% if active_create %}nav__item_active{% endif %}"><a href="{% url 'recipes:recipe_create' %}" class="nav__link link">Create Recipe</a></li>
+                    <li class="nav__item {% if active_favorites %}nav__item_active{% endif %}"><a href="{% url 'recipes:favorite_recipes' user.username %}" class="nav__link link">Favorites</a></li>
+                    <li class="nav__item {% if active_follow %}nav__item_active{% endif %}"><a href="{% url 'recipes:follow_index' user.username %}" class="nav__link link">My subscriptions</a></li>
+                    <li class="nav__item {% if active_purchases %}nav__item_active{% endif %}"><a href="{% url 'recipes:purchases_index' %}" class="nav__link link">Shopping list<span class="badge badge_style_blue nav__badge" id="counter">{{ count }}</span></a></li>
                 {% else %}
                     <li class="nav__item {% if active_page == 'index' %}nav__item_active{% endif %}"><a href="{% url 'index' %}" class="nav__link link">Recipes</a></li>
                 {% endif %}
