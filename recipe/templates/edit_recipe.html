@@ -1,27 +1,26 @@
 {% extends "base.html" %}
-{% block title %} Create Recipe {% endblock %}
+
+{% block title %} Edit recipe {% endblock %}
 
 {% block content %}
 
 {% load widget_tweaks %}
 
-<div class="main__header">
-        <h1 class="main__title">Create Recipe</h1>
-</div>
-    <div class="form-container">
-        <form class="form" action="{% url 'recipes:recipe_create' %}" method="post" enctype="multipart/form-data">
+<div class="form-container">
+        <form class="form" action="{% url 'recipes:recipe_edit' recipe_id=recipe.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
             <!-- Recipe Name -->
             <div class="form__group">
                 <label for="id_name" class="form__label">Recipe title</label>
                 <div class="form__field-group">
+                    <!--<input type="text" id="id_name" name="name" class="form__input">-->
                     {{ form.name|add_class:"form__input" }}
                     <span class="form__error"></span>
                 </div>
             </div>
 
             <!-- Recipe Tags -->
-    <div class="form__group">
+            <div class="form__group">
         <p class="form__label">Recipe Type</p>
         <div class="form__field-group">
             <div class="tags">
@@ -70,6 +69,7 @@
                     <span class="form__error">{{ form.cook_time.errors }}</span>
                 </div>
             </div>
+
             <!-- Recipe Description -->
              <div class="form__group">
                 <label for="id_description" class="form__label">Description</label>
@@ -83,14 +83,15 @@
             <div class="form__group">
                 <span class="form__label">Add an image</span>
                 <div class="form__field-group">
-                    {{ form.picture|add_class:"form__file-button" }}
+             {{ form.picture|add_class:"form__file-button" }}
                     <span class="form__error"></span>
                 </div>
             </div>
 
             <!-- Recipe Button  -->
             <div class="form__footer">
-                <button class="button button_style_blue">Add recipe</button>
+                <button class="button button_style_blue">Save</button>
+                <a style="margin-left: 2.5em" href="{% url 'recipes:recipe_delete' recipe.id %}" class="form__ingredient-link">Delete</a>
             </div>
         </form>
     </div>
@@ -106,3 +107,4 @@
 <script src="{% static 'js/formRecipe.js' %}"></script>
 
 {% endblock %}
+
