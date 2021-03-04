@@ -12,7 +12,7 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = (
-            'name', 'description', 'cook_time', 'picture',
+            'name', 'description', 'cook_time', 'picture', 'type',
         )
 
         labels = {

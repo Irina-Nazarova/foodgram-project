@@ -22,19 +22,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
+#SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = 's=1q2433hn3!5ovw_rv0q@ak6anbzhfkh!qc-lmhvth0l0^brl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'users',
     'django.contrib.flatpages',
+    'users',
+    'recipe',
+    'api_v1',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,10 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sorl.thumbnail',
     'django.contrib.sites',
-    'recipe',
-    'api_v1',
     'widget_tweaks',  # https://pypi.org/project/django-widget-tweaks/
-    #'users',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +62,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     # связывает пользователей, использующих сессии, запросами
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -159,7 +164,8 @@ LOGIN_URL = reverse_lazy('login')
 
 LOGIN_REDIRECT_URL = reverse_lazy('index')
 
-LOGOUT_REDIRECT_URL = reverse_lazy('index')
+#LOGOUT_REDIRECT_URL = reverse_lazy('index') #Уберите комментарий с этой строки, если хотите перенаправлять п
+# ользователя на главную страницу после того, как он разлогинится
 
 # CACHES = {
 #     'default': {
@@ -169,6 +175,7 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 #SITE_ID = os.environ.get('SITE_ID')
 SITE_ID = 1
+
 OBJECT_PER_PAGE = 6
 
 #  подключаем движок filebased.EmailBackend (для сброса пароля)

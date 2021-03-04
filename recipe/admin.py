@@ -65,8 +65,3 @@ admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
 admin.site.register(FavoriteRecipe, FavoriteRecipeAdmin)
 admin.site.register(Follow, FollowAdmin)
 admin.site.register(Purchase, PurchaseAdmin)
-
-
-
-
-

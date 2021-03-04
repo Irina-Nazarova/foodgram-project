@@ -29,7 +29,7 @@ class RecipeType(models.Model):
         ('dinner', 'Dinner'),
     )
     type_name = models.CharField(max_length=25,
-                                 #choices=TYPE_CHOICES,
+                                 choices=TYPE_CHOICES,
                                  unique=True)
     color = models.CharField(max_length=10,
                              default='',

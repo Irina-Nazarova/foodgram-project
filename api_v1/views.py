@@ -85,8 +85,7 @@ class Purchases(View):
 
 
 class Ingredients(View):
-    """ для автозаполнения поля ингредиентов
-    в форме создания/редактирования рецепта """
+    """ для автозаполнения поля ингредиентов в форме создания/редактирования рецепта """
 
     def get(self, request):
         text = request.GET['query']
@@ -95,5 +94,3 @@ class Ingredients(View):
             title__icontains=text).values('name', 'measure'))
 
         return JsonResponse(ingredients, safe=False)
-
-
