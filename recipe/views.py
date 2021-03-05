@@ -13,11 +13,13 @@ from recipe.models import (
     Purchase,
     RecipeIngredient,
     RecipeType,
+    Ingredient,
 )
+from recipe.utils import get_ingredients, generate_shop_list
 
 
 def index(request):
-    """ главная страница """
+    """Главная страница."""
 
     active_index = True  # для подсвечивания активного раздела
     # получаем все теги из БД
@@ -45,17 +47,28 @@ def index(request):
 
 @login_required
 def recipe_create(request):
-    """ создание рецепта """
+    """Создание рецепта."""
 
     active_create = True  # для подсвечивания активного раздела
 
     if request.method == "POST":
         # TODO: Добавить ингридиенты, тип (Завтрак, обед, ужин)
         form = RecipeForm(request.POST or None, files=request.FILES or None)
+        # В ingredients словарь вида: {'Sausages': '3', 'eggs': '3'}
+        ingredients = get_ingredients(request)
+
         if form.is_valid():
-            f = form.save(commit=False)
-            f.author = request.user
-            f.save()
+            recipe = form.save(commit=False)
+            recipe.author = request.user
+            recipe.save()
+            # заполнение связной таблицы в БД
+            for item in ingredients:
+                RecipeIngredient.objects.create(
+                    weight=ingredients[item],
+                    recipe=recipe,
+                    ingredient=get_object_or_404(Ingredient, name=item),
+                )
+
             # сохраняем данные для полей м2м (тэги и ингредиенты)
             form.save_m2m()
             return redirect("index")
@@ -73,7 +86,7 @@ def recipe_create(request):
 
 
 def recipe_edit(request, recipe_id):
-    """страница редактирования рецепта"""
+    """Страница редактирования рецепта."""
 
     # получаем рецепт по ID
     recipe = get_object_or_404(Recipe, id=recipe_id)
@@ -83,22 +96,27 @@ def recipe_edit(request, recipe_id):
             request.POST or None, files=request.FILES or None, instance=recipe
         )
         # функция, передающая список ингредиентов
-        # ingredients = get_ingredients(request)
+        ingredients = get_ingredients(request)
 
-        # if not ingredients:
-        #     form.add_error(None, 'Add at least one ingredient')
         if form.is_valid():
-            # удаляем ингредиенты, связанные с рецептом
+            # удаляем ингредиенты, связанные с рецептом, т.к. при обновлении добавим новые в случае необходимости
             RecipeIngredient.objects.filter(recipe=recipe).delete()
             # сохраняем форму, но не отправляем в БД
             recipe = form.save(commit=False)
             recipe.author = request.user  # получаем автора рецепта
             recipe.save()  # сохраняем изменения
+            # заполнение связной таблицы обновленным списком ингредиентов
+            for item in ingredients:
+                RecipeIngredient.objects.create(
+                    weight=ingredients[item],
+                    recipe=recipe,
+                    ingredient=get_object_or_404(Ingredient, name=item),
+                )
 
             # сохраняем данные для полей м2м (тэги и ингредиенты)
             form.save_m2m()
             return redirect("index")
-
+    # else:
     form = RecipeForm(
         request.POST or None, files=request.FILES or None, instance=recipe
     )
@@ -109,26 +127,24 @@ def recipe_edit(request, recipe_id):
 
 
 def recipe_delete(request, recipe_id):
-    """удаление рецепта"""
+    """Удаление рецепта."""
 
     # получаем рецепт по ID
     recipe = get_object_or_404(Recipe, id=recipe_id)
-
     # если пользователь является автором рецепта, то удаляем рецепт
     if request.user == recipe.author:
         recipe.delete()
-
     return redirect("index")
 
 
 def recipe_view(request, username, recipe_id):
-    """ страница просмотра рецепта """
+    """Страница просмотра рецепта."""
 
     recipe = get_object_or_404(
         Recipe, id=recipe_id
     )  # рецепт который нужно отразить
     author = get_object_or_404(User, username=username)  # автор рецепта
-
+    ingredient = RecipeIngredient.objects.filter(recipe=recipe)
     # проверяем, подписан ли текущий пользователь на автора
     following = False
     if request.user.is_authenticated:
@@ -136,13 +152,19 @@ def recipe_view(request, username, recipe_id):
             user=request.user, author=author
         ).exists()
     return render(
-        request, "recipe_view.html", {"recipe": recipe, "following": following}
+        request,
+        "recipe_view.html",
+        {
+            "recipe": recipe,
+            "following": following,
+            "ingredient": ingredient,
+        },
     )
 
 
 @login_required
 def favorite_recipes(request, username):
-    """ страница избранных рецептов """
+    """Страница избранных рецептов."""
 
     active_favorites = True
 
@@ -165,14 +187,23 @@ def favorite_recipes(request, username):
         "recipe_types": recipe_types,
         "active_favorites": active_favorites,
     }
-    return render(request, "index.html", context)
+    return render(request, "favorite.html", context)
 
 
 def profile(request, username):
-    """ страница автора рецептов """
+    """Страница автора рецептов."""
 
     author = get_object_or_404(User, username=username)  # автор, чья страница
-    recipes = Recipe.objects.filter(author=author)
+    recipe_types = RecipeType.objects.all()
+
+    tag_value = request.GET.getlist("filters")
+    if tag_value:
+        recipes = Recipe.objects.filter(
+            type__type_name__in=tag_value, favorite__user__id=request.user.id
+        ).distinct()
+    else:
+        recipes = Recipe.objects.filter(author=author)
+
     following = False  # на кого подписались
     if request.user.is_authenticated:
         following = Follow.objects.filter(
@@ -182,14 +213,14 @@ def profile(request, username):
     paginator = Paginator(recipes, OBJECT_PER_PAGE)
     page_number = request.GET.get("page")
     page = paginator.get_page(page_number)
-
     return render(
         request,
-        "index.html",
+        "author_profile.html",
         {
             "page": page,
             "paginator": paginator,
             "following": following,
+            "recipe_types": recipe_types,
             "author": author,
         },
     )
@@ -197,7 +228,7 @@ def profile(request, username):
 
 @login_required
 def follow_index(request, username):
-    """страница мои подписки"""
+    """Страница мои подписки."""
 
     active_follow = True  # для подсвечивания активного раздела
 
@@ -226,7 +257,7 @@ def follow_index(request, username):
 
 @login_required
 def purchases_index(request):
-    """страница списка покупок"""
+    """Страница списка покупок."""
 
     active_purchases = True  # для подсвечивания активного раздела
 
@@ -240,7 +271,7 @@ def purchases_index(request):
 
 
 def purchases_delete(request, recipe_id):
-    """ удаление рецепта из списка покупок """
+    """Удаление рецепта из списка покупок."""
 
     # получаем рецепт, который хотим удалить
     recipe = get_object_or_404(Recipe, id=recipe_id)
@@ -253,8 +284,10 @@ def purchases_delete(request, recipe_id):
 
 @login_required
 def download(request):
-    """ Скачать список покупок в PDF файл """
+    """Скачать список покупок в PDF файл."""
 
+    # Формируем список покупок
+    result = generate_shop_list(request)
     # Создаем HttpResponse объект соответствующием заголовком
     # application/pdf - говорим браузеру, что загрузится pdf, а не html страница
     response = HttpResponse(content_type="application/pdf")
@@ -266,11 +299,9 @@ def download(request):
     # Заголовок
     p.drawString(10, top_line, "Purchases:")
     # В цикле добавляем каждую строчку к покупке
-    for i in range(0, 5):
-        # -20 - отступ от предыдущей строки
+    for i in result:
         top_line -= 20
-        # TODO: Сейчас не реализована модель Ingredients, тем самым доставить список не откуда.
-        p.drawString(10, top_line, f"{i}. Rcipe {i}")
+        p.drawString(10, top_line, i)
     p.showPage()
     p.save()
     return response

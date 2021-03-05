@@ -18,7 +18,7 @@ class Ingredient(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        return f"{self.name} ({self.measure})"
+        return self.name
 
 
 class RecipeType(models.Model):
@@ -59,7 +59,9 @@ class Recipe(models.Model):
     type = models.ManyToManyField(RecipeType, related_name="tag")
     ingredients = models.ManyToManyField(
         Ingredient,
-        related_name="ingredients",
+        through="RecipeIngredient",
+        through_fields=("recipe", "ingredient"),
+        verbose_name="ingredients",
     )
     description = models.TextField()
     pub_date = models.DateTimeField(
@@ -80,14 +82,20 @@ class Recipe(models.Model):
         verbose_name_plural = "Recipes"
         ordering = ["-pub_date"]
 
+    def __str__(self):
+        return self.name
+
 
 class RecipeIngredient(models.Model):
+
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name="recipe_ingredient"
     )
+
     ingredient = models.ForeignKey(
         Ingredient, on_delete=models.PROTECT, related_name="recipe_ingredient"
     )
+
     weight = models.PositiveSmallIntegerField(
         verbose_name="ingredient weight",
         null=False,
@@ -102,7 +110,7 @@ class RecipeIngredient(models.Model):
         ordering = ["recipe"]
 
     def __str__(self):
-        return f"{self.ingredient.name} {self.weight} for {self.recipe.name}"
+        return self.ingredient.name
 
 
 class FavoriteRecipe(models.Model):
@@ -127,12 +135,12 @@ class FavoriteRecipe(models.Model):
 
 
 class Follow(models.Model):
-    #  пользователь, который подписывается
+    # пользователь, который подписывается
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="follower"
     )
 
-    #  пользователь, на которого подписываются
+    # пользователь, на которого подписываются
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="following"
     )

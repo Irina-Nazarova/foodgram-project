@@ -7,7 +7,7 @@ register = template.Library()
 
 @register.filter()
 def is_favorite(recipe, user):
-    """ фильтр проверки находится ли рецепт в избранном """
+    """Фильтр проверки находится ли рецепт в избранном."""
     return FavoriteRecipe.objects.filter(user=user, recipe=recipe).exists()
 
 
@@ -25,7 +25,7 @@ def subtract(value, arg):
 
 @register.filter()
 def is_purchase(recipe, user):
-    """ фильтр проверки находится ли рецепт в списке покупок """
+    """Фильтр проверки находится ли рецепт в списке покупок."""
     return Purchase.objects.filter(user=user, recipe=recipe).exists()
 
 

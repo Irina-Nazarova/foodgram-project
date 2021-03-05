@@ -28,5 +28,5 @@ urlpatterns = [
         name="delete_purchases",
     ),
     # автозаполнение поля Ингредиенты при создании нового рецепта
-    path("api/ingredients/", views.Ingredients.as_view(), name="ingredients"),
+    path("ingredients/", views.Ingredients.as_view(), name="ingredients"),
 ]
