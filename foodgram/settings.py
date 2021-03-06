@@ -51,16 +51,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "sorl.thumbnail",
     "django.contrib.sites",
-    "widget_tweaks",  # https://pypi.org/project/django-widget-tweaks/
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    # управление сессиями м/у запросами
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    # связывает пользователей, использующих сессии, запросами
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -161,14 +159,6 @@ LOGIN_URL = reverse_lazy("login")
 
 LOGIN_REDIRECT_URL = reverse_lazy("index")
 
-# LOGOUT_REDIRECT_URL = reverse_lazy('index') #Уберите комментарий с этой строки, если хотите перенаправлять п
-# ользователя на главную страницу после того, как он разлогинится
-
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-#     }
-# }
 
 # SITE_ID = os.environ.get('SITE_ID')
 SITE_ID = 1

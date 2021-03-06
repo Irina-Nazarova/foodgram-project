@@ -22,18 +22,11 @@ from recipe.views import index
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # flatpages
     path("about/", include("django.contrib.flatpages.urls")),
-    # регистрация и авторизация
     path("auth/", include("users.urls")),
-    # если нужного шаблона для /auth не нашлось в файле users.urls —
-    # ищем совпадения в файле django.contrib.auth.urls
     path("auth/", include("django.contrib.auth.urls")),
-    # Рецепты
     path("recipes/", include("recipe.urls")),
-    # API v1
     path("api/", include("api_v1.urls")),
-    # Default
     path("", index, name="index"),
 ]
 
