@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
 from django.db.models import F
+
 from recipe.models import (
     Recipe,
     FavoriteRecipe,
@@ -19,12 +20,14 @@ class Favorites(View):
 
     def post(self, request):
         """ Добавление в избранное. """
-
         recipe_id = json.loads(request.body)["id"]
-        recipe = get_object_or_404(Recipe, id=recipe_id)
-
-        FavoriteRecipe.objects.get_or_create(user=request.user, recipe=recipe)
-        return JsonResponse({"success": True})
+        if not recipe_id:
+            return JsonResponse({'success': 'false', 'massage': 'id not found'},
+                                status=400)
+        else:
+            recipe = get_object_or_404(Recipe, id=recipe_id)
+            FavoriteRecipe.objects.get_or_create(user=request.user, recipe=recipe)
+            return JsonResponse({"success": True})
 
     def delete(self, request, recipe_id):
         """ Удаление из избранного. """
@@ -43,9 +46,13 @@ class Subscribe(View):
         """ Подписка на пользователя. """
 
         author_id = json.loads(request.body)["id"]
-        author = get_object_or_404(User, id=author_id)
-        Follow.objects.get_or_create(user=request.user, author=author)
-        return JsonResponse({"success": True})
+        if not author_id:
+            return JsonResponse({'success': 'false', 'massage': 'id not found'},
+                                status=400)
+        else:
+            author = get_object_or_404(User, id=author_id)
+            Follow.objects.get_or_create(user=request.user, author=author)
+            return JsonResponse({"success": True})
 
     def delete(self, request, author_id):
         """ Отписка от пользователя. """
@@ -62,9 +69,13 @@ class Purchases(View):
         """ Добавление в список покупок. """
 
         recipe_id = json.loads(request.body)["id"]
-        recipe = get_object_or_404(Recipe, id=recipe_id)
-        Purchase.objects.get_or_create(user=request.user, recipe=recipe)
-        return JsonResponse({"success": True})
+        if not recipe_id:
+            return JsonResponse({'success': 'false', 'massage': 'id not found'},
+                                status=400)
+        else:
+            recipe = get_object_or_404(Recipe, id=recipe_id)
+            Purchase.objects.get_or_create(user=request.user, recipe=recipe)
+            return JsonResponse({"success": True})
 
     def delete(self, request, recipe_id):
         """ Удаление из списка покупок. """
