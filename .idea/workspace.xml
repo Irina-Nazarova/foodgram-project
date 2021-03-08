@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="36a5e832-8b05-431b-ae16-daa767a8df3d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/food_08.03.21_prod_2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/052b3176-30df-4be2-8e00-b97d997c6941.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/44e8bf98-e760-41bf-a787-17e850593221.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c2ccb73c-6c3e-4a5f-92bf-cebe0897078e.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cbcea274-40c1-4ab5-a2df-46b92065d812.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/foodgram-project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_v1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v1/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodgram/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodgram/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_5gF2NMv.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_NnvZzk4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_YrMoPh1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_jC76X3c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/author_profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/edit_recipe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/favorite.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/my_follow.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe_create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe_view.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/shop_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templatetags/recipe_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templatetags/recipe_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/flatpages/about_author.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/flatpages/about_author.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/flatpages/about_project.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/flatpages/about_project.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/flatpages/technologies.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/flatpages/technologies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/nav.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/paginator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipe_item.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1pTrXXlLccX9sspDLd7ArOynaMq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration name="food_08.03.21_prod_2" type="Python.DjangoServer" factoryName="Django server">
+      <module name="food_08.03.21_prod_2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="36a5e832-8b05-431b-ae16-daa767a8df3d" name="Default Changelist" comment="" />
+      <created>1615217961005</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615217961005</updated>
+      <workItem from="1615217962160" duration="590000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
