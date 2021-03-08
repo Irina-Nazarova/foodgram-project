@@ -20,13 +20,17 @@ class Favorites(View):
 
     def post(self, request):
         """ Добавление в избранное. """
+
         recipe_id = json.loads(request.body)["id"]
         if not recipe_id:
-            return JsonResponse({'success': 'false', 'massage': 'id not found'},
-                                status=400)
+            return JsonResponse(
+                {"success": "false", "massage": "id not found"}, status=400
+            )
         else:
             recipe = get_object_or_404(Recipe, id=recipe_id)
-            FavoriteRecipe.objects.get_or_create(user=request.user, recipe=recipe)
+            FavoriteRecipe.objects.get_or_create(
+                user=request.user, recipe=recipe
+            )
             return JsonResponse({"success": True})
 
     def delete(self, request, recipe_id):
@@ -47,8 +51,9 @@ class Subscribe(View):
 
         author_id = json.loads(request.body)["id"]
         if not author_id:
-            return JsonResponse({'success': 'false', 'massage': 'id not found'},
-                                status=400)
+            return JsonResponse(
+                {"success": "false", "massage": "id not found"}, status=400
+            )
         else:
             author = get_object_or_404(User, id=author_id)
             Follow.objects.get_or_create(user=request.user, author=author)
@@ -70,8 +75,9 @@ class Purchases(View):
 
         recipe_id = json.loads(request.body)["id"]
         if not recipe_id:
-            return JsonResponse({'success': 'false', 'massage': 'id not found'},
-                                status=400)
+            return JsonResponse(
+                {"success": "false", "massage": "id not found"}, status=400
+            )
         else:
             recipe = get_object_or_404(Recipe, id=recipe_id)
             Purchase.objects.get_or_create(user=request.user, recipe=recipe)
