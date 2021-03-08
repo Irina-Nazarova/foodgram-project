@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} favorite {% endblock %}
+
+{% block content %}
+
+{% load recipe_filters %}
+
+{% csrf_token %} {# необходим для передачи POST запроса в API из JS #}
+
+ <div class="main__header">
+    <h1 class="main__title">My Favorite Recipes</h1>
+    <ul class="tags">
+        {% include "recipe/includes/recipe_tags.html"  %}
+    </ul>
+</div>
+
+<div class="card-list">
+    {% for recipe in page %}
+        {% include "recipe/includes/recipe_item.html" with recipe=recipe %}
+    {% endfor %}
+</div>
+
+{% if page.has_other_pages %}
+    {% include "includes/paginator.html" with items=page paginator=paginator%}
+{% endif %}
+
+{% load static %}
+    <link rel="stylesheet" href="{% static 'pages/index.css' %}">
+    <script src="{% static 'js/config/config.js' %}"></script>
+    <script src="{% static 'js/components/MainCards.js' %}"></script>
+    <script src="{% static 'js/components/Purchases.js' %}"></script>
+    <script src="{% static 'js/components/Favorites.js' %}"></script>
+    <script src="{% static 'js/components/CardList.js' %}"></script>
+    <script src="{% static 'js/components/Header.js' %}"></script>
+    <script src="{% static 'js/api/Api.js' %}"></script>
+    <script src="{% static 'js/favorite.js' %}"></script>
+
+{% endblock %}

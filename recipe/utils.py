@@ -7,14 +7,16 @@ User = get_user_model()
 
 
 def get_ingredients(request):
-    """генерирует список ингредиентов при создании/редактировании рецепта,
-    достает из POST запроса"""
+    """
+    Генерирует список ингредиентов при создании/редактировании рецепта,
+    достает из POST запроса.
+    """
 
-    ingredients = {}  # словарь для списка ингредиентов
+    ingredients = {}
 
     for key in request.POST:
         if key.startswith("nameIngredient"):
-            value_ingredient = key[15:]  # получаем количество
+            value_ingredient = key[15:]
             ingredients[request.POST[key]] = request.POST[
                 "valueIngredient_" + value_ingredient
             ]
@@ -23,31 +25,27 @@ def get_ingredients(request):
 
 
 def generate_shop_list(request):
-    """ генерирует список покупок для выгрузки """
+    """ Генерирует список покупок для выгрузки. """
 
-    # для кого формируется список покупок
     user = get_object_or_404(User, username=request.user.username)
-    # рецепты, ингридиенты которого составят список покупок
-    recipes = user.purchases.all()
+    purchases = user.purchases.all()
     ingredients = {}
 
-    # Идем циклом по рецептам
-    for i in recipes:
-        # Получаем все ингридиенты для конкретного рецепта
-        recipe = RecipeIngredient.objects.filter(recipe=i.recipe)
-        for i in recipe:
-            if ingredients.get(i.ingredient.name):
-                # Если есть - суммируем ту еденицу в чем он измеряется
-                ingredients[i.ingredient.name][0] += i.weight
+    for purchase in purchases:
+        recipe_ingredients = RecipeIngredient.objects.filter(
+            recipe=purchase.recipe
+        )
+
+        for item in recipe_ingredients:
+            if ingredients.get(item.ingredient.name):
+                ingredients[item.ingredient.name][0] += item.weight
             else:
-                # Если в словаре еще нет этого продукта, добавляем
-                ingredients[i.ingredient.name] = [
-                    i.weight,
-                    i.ingredient.measure,
+                ingredients[item.ingredient.name] = [
+                    item.weight,
+                    item.ingredient.measure,
                 ]
 
     result = []
-    # Подготавливаем финальный список
     for k, v in ingredients.items():
         result.append(f"{k}   {v[0]}  {v[1]}")
 

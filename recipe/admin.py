@@ -4,10 +4,11 @@ from .models import (
     Ingredient,
     Recipe,
     RecipeIngredient,
-    RecipeType,
+    Tag,
     FavoriteRecipe,
     Follow,
     Purchase,
+    RecipeTags,
 )
 
 
@@ -42,18 +43,21 @@ class RecipeAdmin(admin.ModelAdmin):
     empty_value_display = "-empty-"
 
 
-class RecipeTypeAdmin(admin.ModelAdmin):
+class TagAdmin(admin.ModelAdmin):
     list_display = (
         "color",
-        "type_name",
+        "name",
+        "value",
     )
     search_fields = (
         "color",
-        "type_name",
+        "name",
+        "value",
     )
     list_filter = (
         "color",
-        "type_name",
+        "name",
+        "value",
     )
     empty_value_display = "-empty-"
 
@@ -123,10 +127,15 @@ class PurchaseAdmin(admin.ModelAdmin):
     empty_value_display = "-empty-"
 
 
+class RecipeTagsAdmin(admin.ModelAdmin):
+    list_display = ("recipe", "tag")
+
+
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
-admin.site.register(RecipeType, RecipeTypeAdmin)
+admin.site.register(Tag, TagAdmin)
 admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
 admin.site.register(FavoriteRecipe, FavoriteRecipeAdmin)
 admin.site.register(Follow, FollowAdmin)
 admin.site.register(Purchase, PurchaseAdmin)
+admin.site.register(RecipeTags, RecipeTagsAdmin)

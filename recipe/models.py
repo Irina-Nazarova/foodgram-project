@@ -5,58 +5,78 @@ User = get_user_model()
 
 
 class Ingredient(models.Model):
-    # название ингридиента
-    name = models.CharField(
-        max_length=5000, verbose_name="ingredient's name", unique=True
-    )
-    # единица измерения
-    measure = models.CharField(max_length=100, verbose_name="measurement unit")
-
     class Meta:
         verbose_name = "Ingredient"
         verbose_name_plural = "Ingredients"
         ordering = ["name"]
 
+    name = models.CharField(
+        max_length=5000,
+        verbose_name="ingredient's name",
+        unique=True
+    )
+    measure = models.CharField(
+        max_length=100,
+        verbose_name="measurement unit"
+    )
+
     def __str__(self):
         return self.name
 
 
-class RecipeType(models.Model):
-    TYPE_CHOICES = (
-        ("breakfast", "Breakfast"),
-        ("lunch", "Lunch"),
-        ("dinner", "Dinner"),
-    )
-    type_name = models.CharField(
-        max_length=25, choices=TYPE_CHOICES, unique=True
-    )
-    color = models.CharField(max_length=10, default="", editable=False)
-
+class Tag(models.Model):
     class Meta:
-        verbose_name = "Recipe type"
-        verbose_name_plural = "Recipe types"
-        ordering = ["type_name"]
+        verbose_name = "Tag"
+        verbose_name_plural = "Tags"
 
-    def save(self, *args, **kwargs):
-        if self.type_name == "dinner":
-            self.color = "purple"
-        elif self.type_name == "lunch":
-            self.color = "green"
-        else:
-            self.color = "orange"
-
-        super(RecipeType, self).save(*args, **kwargs)
+    value = models.CharField("Value", max_length=10, unique=True)
+    name = models.CharField("Visible name", max_length=25, unique=True)
+    color = models.CharField("Color", max_length=10)
 
     def __str__(self):
-        return self.type_name
+        return self.name
+
+
+class RecipeManager(models.Manager):
+    @staticmethod
+    def tag_filter(tags):
+        if tags:
+            return Recipe.objects.filter(tag__name__in=tags).distinct()
+        else:
+            return Recipe.objects.all()
+
+
+class FavoriteRecipeManager(models.Manager):
+    @staticmethod
+    def favorite_recipe(user, tags):
+        favorite = FavoriteRecipe.objects.filter(user=user).all()
+        recipes_id = favorite.values_list("recipe", flat=True)
+        favorite_list = (
+            Recipe.objects.tag_filter(tags)
+            .filter(pk__in=recipes_id)
+            .order_by("-pub_date")
+        )
+        return favorite_list
 
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=200, verbose_name="recipe's name")
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="recipes"
+    class Meta:
+        verbose_name = "Recipe"
+        verbose_name_plural = "Recipes"
+        ordering = ["-pub_date"]
+
+    name = models.CharField(
+        max_length=200,
+        verbose_name="recipe's name"
     )
-    type = models.ManyToManyField(RecipeType, related_name="tag")
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        related_name="recipes"
+    )
+    tag = models.ManyToManyField(
+        Tag, through="RecipeTags",
+        related_name="recipes"
+    )
     ingredients = models.ManyToManyField(
         Ingredient,
         through="RecipeIngredient",
@@ -65,7 +85,9 @@ class Recipe(models.Model):
     )
     description = models.TextField()
     pub_date = models.DateTimeField(
-        auto_now=True, db_index=True, verbose_name="publishing date"
+        auto_now=True,
+        db_index=True,
+        verbose_name="publishing date"
     )
     cook_time = models.PositiveSmallIntegerField(
         verbose_name="cook time",
@@ -74,26 +96,35 @@ class Recipe(models.Model):
         help_text="Add cook time in minutes",
     )
     picture = models.ImageField(
-        upload_to="recipe/", verbose_name="picture of the recipe"
+        upload_to="recipe/",
+        verbose_name="picture of the recipe"
     )
-
-    class Meta:
-        verbose_name = "Recipe"
-        verbose_name_plural = "Recipes"
-        ordering = ["-pub_date"]
+    objects = RecipeManager()
 
     def __str__(self):
         return self.name
 
 
 class RecipeIngredient(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["recipe", "ingredient"],
+                name="recipe_unique"
+            )
+        ]
+        verbose_name = "Recipe Ingredient"
+        verbose_name_plural = "Recipes Ingredients"
+        ordering = ["recipe"]
 
     recipe = models.ForeignKey(
-        Recipe, on_delete=models.CASCADE, related_name="recipe_ingredient"
+        Recipe, on_delete=models.CASCADE,
+        related_name="recipe_ingredient"
     )
 
     ingredient = models.ForeignKey(
-        Ingredient, on_delete=models.PROTECT, related_name="recipe_ingredient"
+        Ingredient, on_delete=models.PROTECT,
+        related_name="recipe_ingredient"
     )
 
     weight = models.PositiveSmallIntegerField(
@@ -103,60 +134,91 @@ class RecipeIngredient(models.Model):
         help_text="Add needed weight for the recipe",
     )
 
-    class Meta:
-        unique_together = ("recipe", "ingredient")
-        verbose_name = "Recipe Ingredient"
-        verbose_name_plural = "Recipes Ingredients"
-        ordering = ["recipe"]
-
     def __str__(self):
         return self.ingredient.name
 
 
-class FavoriteRecipe(models.Model):
-    # Работа со списком избранного доступна только авторизованному пользователю
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="favorite_by"
-    )
-
-    # рецепты избранного может просматривать только его владелец
-    recipe = models.ForeignKey(
-        Recipe, on_delete=models.CASCADE, related_name="favorite"
-    )
-
+class RecipeTags(models.Model):
     class Meta:
-        unique_together = ("recipe", "user")
+        constraints = [
+            models.UniqueConstraint(
+                fields=["recipe", "tag"], name="recipetag_unique"
+            )
+        ]
+        verbose_name = "Recipe tags"
+        verbose_name_plural = "Recipe tags"
+
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        verbose_name="Recipe title",
+        related_name="recipetag",
+    )
+    tag = models.ForeignKey(
+        Tag,
+        on_delete=models.CASCADE,
+        verbose_name="Tag name",
+        related_name="recipetag",
+    )
+
+
+class FavoriteRecipe(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "recipe"], name="favorite_unique"
+            )
+        ]
         verbose_name = "Favorite Recipe"
         verbose_name_plural = "Favorite Recipes"
         ordering = ["user"]
+
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        related_name="favorite_by"
+    )
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE,
+        related_name="favorite"
+    )
+    objects = FavoriteRecipeManager()
 
     def __str__(self):
         return f"favorite recipe - {self.recipe.name}"
 
 
 class Follow(models.Model):
-    # пользователь, который подписывается
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "author"],
+                name="follow_unique"
+            )
+        ]
+        ordering = [
+            "-id",
+        ]
+
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="follower"
     )
-
-    # пользователь, на которого подписываются
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="following"
     )
 
-    class Meta:
-        ordering = [
-            "-id",
-        ]
-        unique_together = ["user", "author"]
-
 
 class Purchase(models.Model):
-    # список покупок пользователя
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "recipe"], name="purchase_unique"
+            )
+        ]
+        verbose_name = "Shopping List"
+        verbose_name_plural = "Shopping Lists"
+        ordering = ["recipe"]
+
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="purchases"
     )
-
-    # рецепт добавленый в список покупок
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)

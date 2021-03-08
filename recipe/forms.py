@@ -13,7 +13,7 @@ class RecipeForm(forms.ModelForm):
             "description",
             "cook_time",
             "picture",
-            "type",
+            "tag",
         )
 
         labels = {

@@ -3,22 +3,13 @@
 
 {% block content %}
 {% load recipe_filters %}
-{% csrf_token %}
 
 <div class="main__header">
     <h1 class="main__title">{{ author.first_name }} {{ author.last_name }}</h1>
-    <!-- Теги фильтра Завтрак, Обед, Ужин -->
-            <ul class="tags">
-                {% for tag in recipe_types %}
-                    <li class="tags__item">
-                        <a id="{{type.type_name}}"
-                           class="tags__checkbox tags__checkbox_style_{{tag.color}}
-                           {% if tag.type_name in request.GET|get_filter_values %} tags__checkbox_active {% endif %}"
-                           href="?{{ request|get_filter_link:tag }}"></a>
-                        <span class="tags__label">{{ tag.type_name }}</span>
-                    </li>
-                {% endfor %}
-            </ul>
+
+        <ul class="tags">
+            {% include "recipe/includes/recipe_tags.html"  %}
+        </ul>
 </div>
 
  {% if user != author %}
@@ -34,17 +25,17 @@
 {% endif %}
 
 
-        <div class="card-list">
-           <!-- Вывод ленты рецептов -->
-            {% for recipe in page %}
-                {% include "recipe_item.html" with recipe=recipe %}
-            {% endfor %}
-        </div>
+    <div class="card-list">
+       <!-- Вывод ленты рецептов -->
+        {% for recipe in page %}
+            {% include "recipe/includes/recipe_item.html" with recipe=recipe %}
+        {% endfor %}
+    </div>
 
-        <!-- Вывод паджинатора -->
-        {% if page.has_other_pages %}
-            {% include "paginator.html" with items=page paginator=paginator%}
-        {% endif %}
+    <!-- Вывод паджинатора -->
+    {% if page.has_other_pages %}
+        {% include "includes/paginator.html" with items=page paginator=paginator%}
+    {% endif %}
 
 
     <!-- Загрузка статики -->
