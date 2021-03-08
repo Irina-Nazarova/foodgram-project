@@ -17,7 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.contrib.flatpages import views as flatpages_views
+
+from foodgram import views
 from recipe.views import index
+
+
+handler404 = views.page_not_found
+handler500 = views.server_error
 
 
 urlpatterns = [
@@ -30,6 +37,26 @@ urlpatterns = [
     path("", index, name="index"),
 ]
 
+urlpatterns += [
+    path(
+        "about-author/",
+        flatpages_views.flatpage,
+        {"url": "/about-author/"},
+        name="about-author",
+    ),
+    path(
+        "about-project/",
+        flatpages_views.flatpage,
+        {"url": "/about-project/"},
+        name="about-project",
+    ),
+    path(
+        "technologies/",
+        flatpages_views.flatpage,
+        {"url": "/technologies/"},
+        name="technologies",
+    ),
+]
 
 if settings.DEBUG:
     urlpatterns += static(
@@ -39,7 +66,3 @@ if settings.DEBUG:
     urlpatterns += static(
         settings.STATIC_URL, document_root=settings.STATIC_ROOT
     )
-
-
-handler404 = "recipe.views.page_not_found"
-handler500 = "recipe.views.server_error"
