@@ -1,9 +1,19 @@
 from django.contrib.auth import get_user_model
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 
-from recipe.models import RecipeIngredient, Ingredient
+from recipe.models import RecipeIngredient
 
 User = get_user_model()
+
+
+def pagination(request, data, count_item):
+    """Метод формирующий пагинацию."""
+
+    paginator = Paginator(data, count_item)
+    page_number = request.GET.get("page")
+    page = paginator.get_page(page_number)
+    return paginator, page
 
 
 def get_ingredients(request):
@@ -46,7 +56,7 @@ def generate_shop_list(request):
                 ]
 
     result = []
-    for k, v in ingredients.items():
-        result.append(f"{k}   {v[0]}  {v[1]}")
+    for ingredient, measure in ingredients.items():
+        result.append(f"{ingredient}   {measure[0]}  {measure[1]}")
 
     return result

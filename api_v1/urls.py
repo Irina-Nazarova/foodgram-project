@@ -21,5 +21,5 @@ urlpatterns = [
         views.ShopingList.as_view(),
         name="delete_purchases",
     ),
-    path("ingredients/", views.Ingredient.as_view(), name="ingredients"),
+    path("ingredients/", views.AddIngredient.as_view(), name="ingredients"),
 ]

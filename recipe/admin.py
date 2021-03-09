@@ -8,7 +8,7 @@ from .models import (
     FavoriteRecipe,
     Follow,
     Purchase,
-    RecipeTags,
+    RecipeTag,
 )
 
 
@@ -138,4 +138,4 @@ admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
 admin.site.register(FavoriteRecipe, FavoriteRecipeAdmin)
 admin.site.register(Follow, FollowAdmin)
 admin.site.register(Purchase, PurchaseAdmin)
-admin.site.register(RecipeTags, RecipeTagsAdmin)
+admin.site.register(RecipeTag, RecipeTagsAdmin)

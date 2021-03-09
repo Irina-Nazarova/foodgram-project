@@ -3,7 +3,7 @@
 
 <div class="card" data-id="{{ recipe.id }}">
     <a href="{% url 'recipes:recipe_view' recipe.author recipe.id %}" class="link" target="_blank">
-        <img src="{{ MEDIA_URL }}{{recipe.picture}}" alt="{{ recipe.description }}" class="card__image">
+        <img src="{{ recipe.picture.url }}" alt="{{ recipe.description }}" class="card__image">
     </a>
     <div class="card__body">
         <a class="card__title link" href="{% url 'recipes:recipe_view' recipe.author recipe.id %}" target="_blank">{{ recipe.name }}</a>

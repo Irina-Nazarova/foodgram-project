@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from reportlab.pdfgen import canvas
@@ -12,19 +11,9 @@ from recipe.models import (
     Follow,
     Purchase,
     RecipeIngredient,
-    Ingredient,
     FavoriteRecipe,
 )
-from recipe.utils import get_ingredients, generate_shop_list
-
-
-def pagination(request, data, count_item):
-    """Метод формирующий пагинацию."""
-
-    paginator = Paginator(data, count_item)
-    page_number = request.GET.get("page")
-    page = paginator.get_page(page_number)
-    return paginator, page
+from recipe.utils import generate_shop_list, pagination
 
 
 def index(request):
@@ -44,26 +33,13 @@ def index(request):
 
 @login_required
 def recipe_create(request):
-    """Страница создания нового рецепта."""
 
     active_create = True
-    form = RecipeForm(request.POST or None, files=request.FILES or None)
-    ingredients = get_ingredients(request)
-    # R: Логика создания и сохранения очень похожа - ее нужно вынести в метод класса формы
-    # A: нет понимания как это реализовать((
+    form = RecipeForm(request.POST or None, files=request.FILES or None,
+                      initial={'request': request})
 
     if form.is_valid():
-        recipe = form.save(commit=False)
-        recipe.author = request.user
-        recipe.save()
-
-        for item in ingredients:
-            RecipeIngredient.objects.create(
-                weight=ingredients[item],
-                recipe=recipe,
-                ingredient=get_object_or_404(Ingredient, name=item),
-            )
-        form.save_m2m()
+        form.save()
         return redirect("index")
 
     context = {
@@ -79,28 +55,18 @@ def recipe_create(request):
 
 @login_required
 def recipe_edit(request, recipe_id):
-    """Страница редактирования рецепта."""
-
     recipe = get_object_or_404(Recipe, id=recipe_id)
-    form = RecipeForm(
-        request.POST or None, files=request.FILES or None, instance=recipe
-    )
-    ingredients = get_ingredients(request)
+    form = RecipeForm(request.POST or None,
+                      files=request.FILES or None,
+                      instance=recipe,
+                      initial={'request': request}
+                      )
 
     if form.is_valid():
         RecipeIngredient.objects.filter(recipe=recipe).delete()
-        recipe = form.save(commit=False)
-        recipe.author = request.user
-        recipe.save()
-
-        for item in ingredients:
-            RecipeIngredient.objects.create(
-                weight=ingredients[item],
-                recipe=recipe,
-                ingredient=get_object_or_404(Ingredient, name=item),
-            )
-        form.save_m2m()
+        form.save()
         return redirect("index")
+
     return render(
         request, "recipe/recipe_action.html", {"form": form, "recipe": recipe}
     )

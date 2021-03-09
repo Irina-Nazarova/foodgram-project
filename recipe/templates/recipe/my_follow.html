@@ -21,7 +21,7 @@
             {% for elem in item.author.recipes.all|slice:":3" %}
             <li class="card-user__item">
                 <div class="recipe">
-                    <img src="{{ MEDIA_URL }}{{ elem.picture }}" alt="{{ elem.name }}" class="recipe__image">
+                    <img src="{{ elem.picture.url }}" alt="{{ elem.name }}" class="recipe__image">
                     <h3 class="recipe__title">{{ elem.name }}</h3>
                     <p class="recipe__text"><span class="icon-time"></span> {{ elem.cook_time }} minutes</p>
                 </div>

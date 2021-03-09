@@ -2,53 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36a5e832-8b05-431b-ae16-daa767a8df3d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/food_08.03.21_prod_2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/052b3176-30df-4be2-8e00-b97d997c6941.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/44e8bf98-e760-41bf-a787-17e850593221.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c2ccb73c-6c3e-4a5f-92bf-cebe0897078e.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cbcea274-40c1-4ab5-a2df-46b92065d812.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/foodgram-project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_v1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v1/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api_v1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_v1/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodgram/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodgram/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_5gF2NMv.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_NnvZzk4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_YrMoPh1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_jC76X3c.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/recipe/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipe/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/migrations/0001_initial.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipe/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templates/author_profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templates/edit_recipe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templates/favorite.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templates/my_follow.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe_create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe_view.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templates/shop_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templatetags/recipe_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templatetags/recipe_filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe/includes/recipe_item.html" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templates/recipe/includes/recipe_item.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe/includes/recipe_tags.html" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templates/recipe/includes/recipe_tags.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe/my_follow.html" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templates/recipe/my_follow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe/recipe_action.html" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templates/recipe/recipe_action.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe/recipe_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templates/recipe/recipe_view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipe/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipe/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/flatpages/about_author.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/flatpages/about_author.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/flatpages/about_project.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/flatpages/about_project.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/flatpages/technologies.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/flatpages/technologies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nav.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/paginator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recipe_item.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,6 +46,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="foodgram.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -98,7 +73,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1615217961005</updated>
-      <workItem from="1615217962160" duration="590000" />
+      <workItem from="1615217962160" duration="2257000" />
+      <workItem from="1615284135259" duration="25834000" />
     </task>
     <servers />
   </component>
@@ -115,5 +91,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

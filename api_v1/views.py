@@ -97,7 +97,7 @@ class ShopingList(View):
         return JsonResponse({"success": True})
 
 
-class Ingredient(View):
+class AddIngredient(View):
     """ Для автозаполнения поля ингредиентов в форме создания/редактирования рецепта. """
 
     def get(self, request):

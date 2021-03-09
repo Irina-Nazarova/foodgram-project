@@ -6,20 +6,17 @@
 {% load widget_tweaks %}
 
 <div class="main__header">
-
-        {% if active_create %}
-            <h1 class="main__title">Create Recipe</h1>
-        {% else%}
-            <h1 class="main__title">Edit Recipe</h1>
-        {% endif %}
+    <h1 class="main__title">
+        {% if active_create %} Create Recipe {% else %}  Edit Recipe {% endif %}
+    </h1>
 </div>
 
 <div class="form-container">
-    {% if active_create %}
-        <form class="form" action="{% url 'recipes:recipe_create' %}" method="post" enctype="multipart/form-data">
-    {% else%}
-        <form class="form" action="{% url 'recipes:recipe_edit' recipe_id=recipe.id %}" method="post" enctype="multipart/form-data">
-    {% endif %}
+    <form class="form"
+          action="{% if active_create %} {% url 'recipes:recipe_create' %} {% else%} {% url 'recipes:recipe_edit' recipe_id=recipe.id %} {% endif %}"
+          method="post"
+          enctype="multipart/form-data">
+
 
         {% csrf_token %}
         <!-- Recipe Name -->
