@@ -1,9 +1,10 @@
 import json
 
+from django.db.models import F
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
-from django.db.models import F
+
 
 from recipe.models import (
     Recipe,
@@ -15,23 +16,25 @@ from recipe.models import (
 )
 
 
-class Favorites(View):
+class Favorite(View):
     """ При необходимости пользователь может добавить/удалить рецепт из избранного. """
 
     def post(self, request):
         """ Добавление в избранное. """
 
-        recipe_id = json.loads(request.body)["id"]
-        if not recipe_id:
-            return JsonResponse(
-                {"success": "false", "massage": "id not found"}, status=400
-            )
-        else:
+        json_data = json.loads(request.body.decode())
+        recipe_id = json_data.get("id")
+
+        if recipe_id:
             recipe = get_object_or_404(Recipe, id=recipe_id)
             FavoriteRecipe.objects.get_or_create(
                 user=request.user, recipe=recipe
             )
             return JsonResponse({"success": True})
+        else:
+            return JsonResponse(
+                {"success": "false", "message": "id not found"}, status=400
+            )
 
     def delete(self, request, recipe_id):
         """ Удаление из избранного. """
@@ -49,15 +52,17 @@ class Subscribe(View):
     def post(self, request):
         """ Подписка на пользователя. """
 
-        author_id = json.loads(request.body)["id"]
-        if not author_id:
-            return JsonResponse(
-                {"success": "false", "massage": "id not found"}, status=400
-            )
-        else:
+        json_data = json.loads(request.body.decode())
+        author_id = json_data.get("id")
+
+        if author_id:
             author = get_object_or_404(User, id=author_id)
             Follow.objects.get_or_create(user=request.user, author=author)
             return JsonResponse({"success": True})
+        else:
+            return JsonResponse(
+                {"success": "false", "message": "id not found"}, status=400
+            )
 
     def delete(self, request, author_id):
         """ Отписка от пользователя. """
@@ -67,21 +72,22 @@ class Subscribe(View):
         return JsonResponse({"success": True})
 
 
-class Purchases(View):
+class ShopingList(View):
     """ Список покупок может добавлять/удалять только его владелец. """
 
     def post(self, request):
         """ Добавление в список покупок. """
 
-        recipe_id = json.loads(request.body)["id"]
-        if not recipe_id:
-            return JsonResponse(
-                {"success": "false", "massage": "id not found"}, status=400
-            )
-        else:
+        json_data = json.loads(request.body.decode())
+        recipe_id = json_data.get("id")
+        if recipe_id:
             recipe = get_object_or_404(Recipe, id=recipe_id)
             Purchase.objects.get_or_create(user=request.user, recipe=recipe)
             return JsonResponse({"success": True})
+        else:
+            return JsonResponse(
+                {"success": "false", "message": "id not found"}, status=400
+            )
 
     def delete(self, request, recipe_id):
         """ Удаление из списка покупок. """
@@ -91,7 +97,7 @@ class Purchases(View):
         return JsonResponse({"success": True})
 
 
-class Ingredients(View):
+class Ingredient(View):
     """ Для автозаполнения поля ингредиентов в форме создания/редактирования рецепта. """
 
     def get(self, request):
