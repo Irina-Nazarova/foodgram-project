@@ -1,3 +1,5 @@
+![Build Status](https://github.com/Irina-Nazarova/foodgram-project/workflows/foodgram-app%20workflow/badge.svg)
+
 # foodgram-project
 
 Foodgram — grocery assistant. Here you can create your own recipes, subscribe to other authors. There is a page for favorites, and you can also make a list of products based on selected recipes with subsequent unloading. Filtering recipes by tags has been implemented. The project can be deployed in three Docker containers using docker-compose.
