@@ -5,8 +5,8 @@
 Foodgram — grocery assistant. Here you can create your own recipes, subscribe to other authors. There is a page for favorites, and you can also make a list of products based on selected recipes with subsequent unloading. Filtering recipes by tags has been implemented. The project can be deployed in three Docker containers using docker-compose.
 
 ## Site url:
---
 
+[www.foodgram.pytools.ru](http://foodgram.pytools.ru/)
 
 ## Test User
 
