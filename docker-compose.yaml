@@ -14,8 +14,8 @@ services:
     image: irinanazarova/foodgram:latest
     restart: always
     volumes:
-      - ./static_volume:/code/static
-      - ./media_volume:/code/media
+      - ./static:/code/staticfiles
+      - ./media:/code/media
     depends_on:
       - db
     env_file:
@@ -29,5 +29,5 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./static_volume:/code/static
-      - ./media_volume:/code/media
+      - ./static:/code/staticfiles
+      - ./media:/code/media
