@@ -18,8 +18,9 @@
                 </div>
                 <a href="{% url 'recipes:purchases_delete' item.recipe.id %}" class="shopping-list__button link">Remove</a>
             </li>
+            {% empty %}
+                <h3 class="text-center">Your shopping list has no recipes yet</h3>
             {% endfor %}
-
         </ul>
         <a href="{% url 'recipes:download' %}"><button class="button button_style_blue">Download a grocery list</button></a>
 </div>

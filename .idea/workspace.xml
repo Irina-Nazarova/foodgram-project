@@ -2,8 +2,109 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36a5e832-8b05-431b-ae16-daa767a8df3d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ingredients.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/ingredients.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodgram/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodgram/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/08/8a/088a9a4aec6a5b4fd97eb558655c21a6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/09/de/09de0411e28b9b02c9d00ad6299b1e53.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/12/25/1225861ac36657a0172fd9c798ef98c7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/12/4d/124de0f19f0224f62355d47b35247671.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/14/02/14027ba257dced2ace4b3b54dfe2f385.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/14/d5/14d5b9347398567cd31146a261acb20e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/25/4c/254c35df59ea908ee82a5aca9c44382d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/28/0e/280e2422962282385a475a4332992242.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/35/56/3556e07268dde35f23963cbc6435ec08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/37/7b/377bfebbd24a2100c3db25ce45a77ded.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/37/a7/37a7c09d1ff8a90c8fd0cf360c7dbac9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/37/ed/37edc5235f632f546fd7d353f0ab9e65.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/42/3b/423b913f067077b427e0379ceff54261.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/46/9e/469e5564f96ef489b2fcae86870853e5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/47/56/475697c2f0482765cfe7e236a0796013.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/48/da/48da43c5b448ad715a4cd556d02ac6c4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/5e/86/5e86d753f4b015facf7e8bf4df2b37cd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/5e/e8/5ee84b52dfc21b2edc5880722c929153.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/67/d8/67d8e516eba34181208e3b214073c652.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/6b/35/6b350444305524244ab693a409e77752.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/77/7f/777fcc78ad4b43165a6a45acf68df6f2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/7d/c4/7dc4302c87133ea1de9d4bb5120d5231.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/80/4b/804b63573953d4ce33485fb84cff3055.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/85/8c/858c644ac663ee1b1ef4977f8fa466bc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/88/df/88df28fe0ce221cbda6aaad00ce37665.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/8b/0c/8b0c22a3ea5822eed8c49d7a3869c40e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/93/77/9377164dab5b51756ae491fc77e69809.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/ad/2d/ad2d7e26674a2dfc2e3ed09d0bab08b2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/b1/a8/b1a89fb4b3b9a450a517c48ba8139933.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/c4/65/c4655959699bc04418355f55892c797f.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/c5/e9/c5e925c0cb5a93678c2c597230b38d1c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/c8/ae/c8ae3615da31650c8a5de0f6f6942abe.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/d0/93/d093cf16c6a3dc85d0d046d9aa6a5add.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/d1/f5/d1f5880b605ac04862abbb91212de62e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/d3/77/d377dd53f623963543fa4f09c160e15b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/e7/ed/e7ed0d11aeed0647605bf0c9a4fb07fe.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/ef/83/ef8328b1a809d34a4bfbc468eca069fd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/cache/fd/32/fd3256970c56c07d276fe784e8006942.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/green_salat.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/green_salat_1JpNxog.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/green_salat_5CMlIeG.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/green_salat_SNqf1Y6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/hot-dog-nyu-york.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/борщ.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/борщ_EtcnDM4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/борщ_HCEnoJ5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/борщ_aG2Bda7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/борщ_bkjt2vC.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/борщ_byagL9J.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/борщ_dSXBHrT.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/борщ_qw2hMAf.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/картинка_8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/паста.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/паста_JYkvFkm.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/паста_JbVFxEY.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/паста_MZcdYlR.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/паста_QyfrPa4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/паста_WfZf2Yf.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/пицца.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/пицца_7z5kAcR.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/пицца_UF3wK2P.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/сосиски.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/сосиски_KXJATfI.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/сосиски_MFGUSga.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/сырники.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/сырники_3qDShIY.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/сырники_NH8HAqz.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/сырники_bkb6k7K.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/сырники_gAnGZ5d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/тирамису.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/торт.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/торт_0IYpLC9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/торт_6YKOGnk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/торт_VO3qg0u.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/торт_jqCyQ6V.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/торт_z5Mht7m.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/тосты.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/тосты_BIkuPwm.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_5gF2NMv.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_NnvZzk4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_YrMoPh1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот_jC76X3c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/recipe/яйца-пашот.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0002_auto_20210307_1219.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0003_auto_20210307_1224.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0004_auto_20210307_1252.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0005_auto_20210307_1308.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0006_auto_20210307_1310.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0007_auto_20210307_2116.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0008_auto_20210307_2316.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0009_recipe_tag.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0010_auto_20210308_0038.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0011_auto_20210309_1437.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/0012_auto_20210309_1853.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe/shop_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templates/recipe/shop_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/includes/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/nav.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,11 +123,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../API_for_YaMDb" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Чужие/foodgram" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
@@ -67,7 +169,7 @@
       <workItem from="1615284135259" duration="29216000" />
       <workItem from="1615384918405" duration="2573000" />
       <workItem from="1615389699059" duration="19000" />
-      <workItem from="1615389786233" duration="19421000" />
+      <workItem from="1615389786233" duration="26801000" />
     </task>
     <servers />
   </component>
