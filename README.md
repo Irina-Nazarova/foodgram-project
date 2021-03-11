@@ -2,7 +2,8 @@
 
 # foodgram-project
 
-Foodgram — grocery assistant. Here you can create your own recipes, subscribe to other authors. There is a page for favorites, and you can also make a list of products based on selected recipes with subsequent unloading. Filtering recipes by tags has been implemented. The project can be deployed in three Docker containers using docker-compose.
+Foodgram — grocery assistant. 
+The project can be deployed in three Docker containers using docker-compose.
 
 ## Site url:
 
@@ -24,7 +25,7 @@ docker-compose up --build
 ## First Start
 **For the first launch**, for project functionality, go inside to the container:
 ```
-docker exec web -t -i <WEB CONTAINER ID> bash
+docker exec -t -i <WEB CONTAINER ID> bash
 ```
 **Make migrations:**
 ```
@@ -35,6 +36,17 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
+## Functionality
+
+* Full user authentication
+* Create/edit/delete new recipe
+* Filter by breakfast/lunch/dinner
+* Choose from a bunch of ingredients
+* Add to favourites
+* Favourites page
+* Follow another authors
+* Add to shopping list
+* Download shopping list
 
 ## Tech Stack
 * [Python 3.8.5](https://www.python.org/)
