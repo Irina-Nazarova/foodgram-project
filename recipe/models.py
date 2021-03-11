@@ -8,14 +8,9 @@ User = get_user_model()
 
 class Ingredient(models.Model):
     name = models.CharField(
-        max_length=5000,
-        verbose_name="ingredient's name",
-        unique=True
+        max_length=5000, verbose_name="ingredient's name", unique=True
     )
-    measure = models.CharField(
-        max_length=100,
-        verbose_name="measurement unit"
-    )
+    measure = models.CharField(max_length=100, verbose_name="measurement unit")
 
     class Meta:
         verbose_name = "Ingredient"
@@ -40,17 +35,12 @@ class Tag(models.Model):
 
 
 class Recipe(models.Model):
-    name = models.CharField(
-        max_length=200,
-        verbose_name="recipe's name"
-    )
+    name = models.CharField(max_length=200, verbose_name="recipe's name")
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        related_name="recipes"
+        User, on_delete=models.CASCADE, related_name="recipes"
     )
     tag = models.ManyToManyField(
-        Tag, through="RecipeTag",
-        related_name="recipes"
+        Tag, through="RecipeTag", related_name="recipes"
     )
     ingredients = models.ManyToManyField(
         Ingredient,
@@ -60,9 +50,7 @@ class Recipe(models.Model):
     )
     description = models.TextField()
     pub_date = models.DateTimeField(
-        auto_now=True,
-        db_index=True,
-        verbose_name="publishing date"
+        auto_now=True, db_index=True, verbose_name="publishing date"
     )
     cook_time = models.PositiveSmallIntegerField(
         verbose_name="cook time",
@@ -71,8 +59,7 @@ class Recipe(models.Model):
         help_text="Add cook time in minutes",
     )
     picture = models.ImageField(
-        upload_to="recipe/",
-        verbose_name="picture of the recipe"
+        upload_to="recipe/", verbose_name="picture of the recipe"
     )
     objects = RecipeManager()
 
@@ -87,13 +74,11 @@ class Recipe(models.Model):
 
 class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(
-        Recipe, on_delete=models.CASCADE,
-        related_name="recipe_ingredients"
+        Recipe, on_delete=models.CASCADE, related_name="recipe_ingredients"
     )
 
     ingredient = models.ForeignKey(
-        Ingredient, on_delete=models.PROTECT,
-        related_name="recipe_ingredients"
+        Ingredient, on_delete=models.PROTECT, related_name="recipe_ingredients"
     )
 
     weight = models.PositiveSmallIntegerField(
@@ -106,8 +91,7 @@ class RecipeIngredient(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["recipe", "ingredient"],
-                name="recipe_unique"
+                fields=["recipe", "ingredient"], name="recipe_unique"
             )
         ]
         verbose_name = "Recipe Ingredient"
@@ -144,12 +128,10 @@ class RecipeTag(models.Model):
 
 class FavoriteRecipe(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        related_name="liker"
+        User, on_delete=models.CASCADE, related_name="liker"
     )
     recipe = models.ForeignKey(
-        Recipe, on_delete=models.CASCADE,
-        related_name="favorite_recipes"
+        Recipe, on_delete=models.CASCADE, related_name="favorite_recipes"
     )
     objects = FavoriteRecipeManager()
 
@@ -178,11 +160,12 @@ class Follow(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["user", "author"],
-                name="follow_unique"
+                fields=["user", "author"], name="follow_unique"
             )
         ]
-        ordering = ["-id", ]
+        ordering = [
+            "-id",
+        ]
 
 
 class Purchase(models.Model):

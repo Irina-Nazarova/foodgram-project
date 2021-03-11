@@ -35,8 +35,11 @@ def index(request):
 def recipe_create(request):
 
     active_create = True
-    form = RecipeForm(request.POST or None, files=request.FILES or None,
-                      initial={'request': request})
+    form = RecipeForm(
+        request.POST or None,
+        files=request.FILES or None,
+        initial={"request": request},
+    )
 
     if form.is_valid():
         form.save()
@@ -56,11 +59,12 @@ def recipe_create(request):
 @login_required
 def recipe_edit(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
-    form = RecipeForm(request.POST or None,
-                      files=request.FILES or None,
-                      instance=recipe,
-                      initial={'request': request}
-                      )
+    form = RecipeForm(
+        request.POST or None,
+        files=request.FILES or None,
+        instance=recipe,
+        initial={"request": request},
+    )
 
     if form.is_valid():
         RecipeIngredient.objects.filter(recipe=recipe).delete()

@@ -4,6 +4,7 @@
 {% block content %}
 
 {% load widget_tweaks %}
+{% load recipe_filters %}
 
 <div class="main__header">
     <h1 class="main__title">
@@ -33,6 +34,8 @@
             <p class="form__label">Recipe Type</p>
             <div class="form__field-group">
                 <div class="tags">
+
+
                     {% for tag in form.fields.tag.choices.queryset  %}
                         <div class="tags__item">
                             <input
@@ -40,7 +43,8 @@
                                 name="tag"
                                 value ="{{ tag.id }}"
                                 id="id_{{ tag.value }}"
-                                class="tags__checkbox tags__checkbox_style_{{ tag.color }}">
+                                class="tags__checkbox tags__checkbox_style_{{ tag.color }}" {% if tag|is_in_type:recipe %} checked {% endif %}>
+
                             <label for="id_{{ tag.value }}" class="tags__label">{{ tag.name }}</label>
                         </div>
                         {% endfor %}
@@ -63,8 +67,8 @@
                     {% if message %}<div class="non-field-errors" style="color: red">{{ message }}</div>{% endif %}
                 </div>
                 <div class="form__field-group-ingredientes-container">
-                    {% if edit %}
-                        {% for ingredient_item in recipe.recipe_ingredient.all %}
+                    {% if not active_create %}
+                        {% for ingredient_item in recipe.recipe_ingredients.all %}
                             <div class="form__field-item-ingredient" id="ing_{{ ingredient_item.id }}">
                                 <span> {{ ingredient_item.ingredient.name }}</span>
                                 <span class="form__field-item-delete"></span>

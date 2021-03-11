@@ -1,0 +1,1 @@
+[{"model": "recipe.tag", "pk": 1, "fields": {"value": "breakfast", "name": "Breakfast", "color": "orange"}}, {"model": "recipe.tag", "pk": 2, "fields": {"value": "lunch", "name": "Lunch", "color": "green"}}, {"model": "recipe.tag", "pk": 3, "fields": {"value": "dinner", "name": "Dinner", "color": "purple"}}]

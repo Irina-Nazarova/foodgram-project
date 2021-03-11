@@ -10,7 +10,7 @@ class RecipeForm(forms.ModelForm):
     picture = forms.ImageField(required=True, label="Add an image")
 
     def save(self, commit=True):
-        request = self.initial['request']
+        request = self.initial["request"]
         recipe = super().save(commit=False)
         recipe.author = request.user
         recipe.save()

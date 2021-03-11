@@ -1,6 +1,6 @@
 from django import template
 
-from recipe.models import FavoriteRecipe, Purchase, Tag
+from recipe.models import FavoriteRecipe, Purchase, Tag, RecipeTag
 
 register = template.Library()
 
@@ -51,3 +51,9 @@ def get_filter_values(value):
 @register.filter()
 def all_tags(value):
     return Tag.objects.all()
+
+
+@register.filter()
+def is_in_type(tag, recipe):
+    type_exists = RecipeTag.objects.filter(tag=tag, recipe=recipe).exists()
+    return type_exists

@@ -23,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = "s=1q2433hn3!5ovw_rv0q@ak6anbzhfkh!qc-lmhvth0l0^brl"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+# DEBUG = True
 DEBUG = False
 
 ALLOWED_HOSTS = [
@@ -97,11 +97,11 @@ WSGI_APPLICATION = "foodgram.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": os.environ.get("DB_ENGINE"),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("POSTGRES_USER"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+        "HOST": os.environ.get("DB_HOST"),
+        "PORT": os.environ.get("DB_PORT"),
         # "ENGINE": "django.db.backends.sqlite3",
         # "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
@@ -144,13 +144,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = "/staticfiles/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
 
-# if DEBUG:
-#     STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-# else:
-#     STATIC_ROOT = os.path.join(BASE_DIR, "static")
+if DEBUG:
+    # STATICFILES_DIRS = [os.path.join(BASE_DIR, "../recipe/static")]
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 
 MEDIA_URL = "/media/"
@@ -163,7 +163,7 @@ LOGIN_URL = reverse_lazy("login")
 LOGIN_REDIRECT_URL = reverse_lazy("index")
 
 
-#SITE_ID = os.environ.get('SITE_ID')
+# SITE_ID = os.environ.get('SITE_ID')
 SITE_ID = 1
 
 OBJECT_PER_PAGE = 6

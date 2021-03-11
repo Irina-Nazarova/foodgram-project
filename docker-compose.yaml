@@ -11,10 +11,10 @@ services:
     env_file:
       - ./.env
   web:
-    image: irinanazarova/foodgram:latest
+    image: irinanazarova/yamdb:latest
     restart: always
     volumes:
-      - ./static:/code/staticfiles
+      - ./static:/code/static
       - ./media:/code/media
     depends_on:
       - db
@@ -29,5 +29,5 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./static:/code/staticfiles
+      - ./static:/code/static
       - ./media:/code/media

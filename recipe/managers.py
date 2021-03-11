@@ -5,6 +5,7 @@ class RecipeManager(models.Manager):
     @staticmethod
     def tag_filter(tags):
         from .models import Recipe
+
         if tags:
             return Recipe.objects.filter(tag__name__in=tags).distinct()
         else:
@@ -15,6 +16,7 @@ class FavoriteRecipeManager(models.Manager):
     @staticmethod
     def favorite_recipe(user, tags):
         from .models import Recipe, FavoriteRecipe
+
         favorite = FavoriteRecipe.objects.filter(user=user).all()
         recipes_id = favorite.values_list("recipe", flat=True)
         favorite_list = (
