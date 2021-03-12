@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="36a5e832-8b05-431b-ae16-daa767a8df3d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodgram/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodgram/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +78,7 @@
       <workItem from="1615384918405" duration="2573000" />
       <workItem from="1615389699059" duration="19000" />
       <workItem from="1615389786233" duration="49207000" />
-      <workItem from="1615479375482" duration="52977000" />
+      <workItem from="1615479375482" duration="55538000" />
     </task>
     <servers />
   </component>
