@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="36a5e832-8b05-431b-ae16-daa767a8df3d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodgram/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodgram/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/registration/password_change_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/registration/password_change_done.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/registration/password_change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/registration/password_change_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/registration/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/registration/password_reset_confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/registration/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/registration/password_reset_done.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/registration/password_reset_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/registration/password_reset_form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +81,7 @@
       <workItem from="1615384918405" duration="2573000" />
       <workItem from="1615389699059" duration="19000" />
       <workItem from="1615389786233" duration="49207000" />
-      <workItem from="1615479375482" duration="7760000" />
+      <workItem from="1615479375482" duration="22743000" />
     </task>
     <servers />
   </component>

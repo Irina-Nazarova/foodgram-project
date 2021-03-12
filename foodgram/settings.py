@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.urls import reverse_lazy
 
@@ -28,8 +27,8 @@ SECRET_KEY = "s=1q2433hn3!5ovw_rv0q@ak6anbzhfkh!qc-lmhvth0l0^brl"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -96,14 +95,14 @@ WSGI_APPLICATION = "foodgram.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("DB_ENGINE"),
-        "NAME": os.environ.get("DB_NAME"),
-        "USER": os.environ.get("POSTGRES_USER"),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
-        "HOST": os.environ.get("DB_HOST"),
-        "PORT": os.environ.get("DB_PORT"),
-        # "ENGINE": "django.db.backends.sqlite3",
-        # "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        # "ENGINE": os.environ.get("DB_ENGINE"),
+        # "NAME": os.environ.get("DB_NAME"),
+        # "USER": os.environ.get("POSTGRES_USER"),
+        # "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+        # "HOST": os.environ.get("DB_HOST"),
+        # "PORT": os.environ.get("DB_PORT"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
 
@@ -168,8 +167,11 @@ SITE_ID = 1
 
 OBJECT_PER_PAGE = 6
 
-#  подключаем движок filebased.EmailBackend (для сброса пароля)
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# #  подключаем движок filebased.EmailBackend
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+#
+# # указываем директорию, в которую будут складываться файлы писем
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
-# указываем директорию, в которую будут складываться файлы писем
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
