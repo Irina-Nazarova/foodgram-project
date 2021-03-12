@@ -33,6 +33,7 @@ def index(request):
 
 @login_required
 def recipe_create(request):
+    """ Cоздание нового рецепта. """
 
     active_create = True
     form = RecipeForm(
@@ -58,6 +59,8 @@ def recipe_create(request):
 
 @login_required
 def recipe_edit(request, recipe_id):
+    """Cтраница редактирования рецепта."""
+
     recipe = get_object_or_404(Recipe, id=recipe_id)
     form = RecipeForm(
         request.POST or None,
@@ -90,11 +93,18 @@ def recipe_view(request, username, recipe_id):
     """Страница просмотра рецепта."""
 
     recipe = get_object_or_404(Recipe, id=recipe_id)
+    author = get_object_or_404(User, username=username)
+    following = False
+    if request.user.is_authenticated:
+        following = Follow.objects.filter(
+            user=request.user, author=author
+        ).exists()
     return render(
         request,
         "recipe/recipe_view.html",
         {
             "recipe": recipe,
+            "following": following,
         },
     )
 

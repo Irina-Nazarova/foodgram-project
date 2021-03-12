@@ -33,11 +33,13 @@
         {% endif %}
 
         <!-- Если рецепт в избранном, подсвечиваем звездочку  -->
-        {% if recipe|is_favorite:user %}
-                <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_active"></span></button>
-            {% else %}
-                <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite"></span></button>
-            {% endif %}
+                <div class="single-card__favorite">
+                {% if recipe|is_favorite:user %}
+                    <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_active"></span></button>
+                {% else %}
+                    <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite"></span></button>
+                {% endif %}
+                </div>
         {% endif %}
         <!-- !End  -->
     </div>

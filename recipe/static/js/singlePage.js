@@ -25,14 +25,14 @@ const configButton = {
         }
     },
     subscribe: {
-        attr: 'data-out',
-        default: {
-            class: 'button_style_blue',
-            text: 'Подписаться на автора'
-        },
-        active: {
-            class: 'button_style_blue',
-            text: `Отписаться от автора`
+    attr: 'data-out',
+    default: {
+        class: 'button_style_blue',
+        text: 'Follow'
+    },
+    active: {
+        class: 'button_style_blue',
+        text: `Unfollow`
         }
     }
 }

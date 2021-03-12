@@ -17,11 +17,12 @@
             <div class="single-card__header-info">
                 <h1 class="single-card__title">{{ recipe.name }}</h1>
 
+            <!-- Если рецепт в избранном, подсвечиваем звездочку  -->
                 <div class="single-card__favorite">
                 {% if recipe|is_favorite:user %}
-                    <button class="button button_style_none" name="favorites"><span class="icon-favorite  icon-favorite_active"></span></button>
+                    <button class="button button_style_none" name="favorites"><span class="icon-favorite  icon-favorite_big icon-favorite_active"></span></button>
                 {% else %}
-                    <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite "></span></button>
+                    <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite icon-favorite_big"></span></button>
                 {% endif %}
                 </div>
             </div>
