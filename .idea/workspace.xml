@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="36a5e832-8b05-431b-ae16-daa767a8df3d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/static/js/authorRecipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/static/js/authorRecipe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/static/js/myFollow.js" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/static/js/myFollow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/static/js/singlePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/static/js/singlePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe/includes/recipe_item.html" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templates/recipe/includes/recipe_item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templates/recipe/recipe_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templates/recipe/recipe_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/templatetags/recipe_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/templatetags/recipe_filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipe/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/registration/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/registration/password_reset_confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodgram/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodgram/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +16,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1pTrXXlLccX9sspDLd7ArOynaMq" />
   <component name="ProjectViewState">
@@ -82,7 +79,7 @@
       <workItem from="1615384918405" duration="2573000" />
       <workItem from="1615389699059" duration="19000" />
       <workItem from="1615389786233" duration="49207000" />
-      <workItem from="1615479375482" duration="34755000" />
+      <workItem from="1615479375482" duration="52977000" />
     </task>
     <servers />
   </component>
