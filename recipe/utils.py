@@ -62,11 +62,11 @@ def generate_shop_list(request):
     return result
 
 
-def is_positive_weight(request):
+def is_negative_weight(request):
     """ Проверяем что значение в ингридиентах больше >= 0 """
-    result = True
+    result = False
     for i in request.POST.keys():
         if i.startswith('valueIngredient') and int(request.POST[i]) < 0:
-            result = False
+            result = True
             break
     return result

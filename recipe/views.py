@@ -13,8 +13,9 @@ from recipe.models import (
     RecipeIngredient,
     FavoriteRecipe,
 )
-from recipe.utils import generate_shop_list, pagination, is_positive_weight
+from recipe.utils import generate_shop_list, pagination, is_negative_weight
 
+INGREDIENT_VALUE_ERROR = "Value should be greater than 0"
 
 def index(request):
     """Отображение главной страницы."""
@@ -42,9 +43,8 @@ def recipe_create(request):
         initial={"request": request},
     )
     context = {}
-    if not is_positive_weight(request):
-        context["ingredient_value_message"] = "Weight should be greater than 0"
-
+    if is_negative_weight(request):
+        context["ingredient_value_message"] = INGREDIENT_VALUE_ERROR
     elif form.is_valid():
         form.save()
         return redirect("index")
@@ -72,8 +72,8 @@ def recipe_edit(request, recipe_id):
         initial={"request": request},
     )
     data = {}
-    if not is_positive_weight(request):
-        data["ingredient_value_message"] = 'Weight should be greater than 0'
+    if is_negative_weight(request):
+        data["ingredient_value_message"] = INGREDIENT_VALUE_ERROR
     elif form.is_valid():
             RecipeIngredient.objects.filter(recipe=recipe).delete()
             form.save()
