@@ -66,11 +66,12 @@
                     <label for="cantidad" class="form__label" id="cantidadVal"></label>
                     {% if message %}<div class="non-field-errors" style="color: red">{{ message }}</div>{% endif %}
                 </div>
+                <div style="color: red"> {{ ingredient_value_message }}</div>
                 <div class="form__field-group-ingredientes-container">
                     {% if not active_create %}
                         {% for ingredient_item in recipe.recipe_ingredients.all %}
                             <div class="form__field-item-ingredient" id="ing_{{ ingredient_item.id }}">
-                                <span> {{ ingredient_item.ingredient.name }}</span>
+                                <span> {{ ingredient_item.ingredient.name }} {{ ingredient_item.weight }} {{ ingredient_item.ingredient.measure }}</span>
                                 <span class="form__field-item-delete"></span>
                                 <input id="nameIngredient_{{ ingredient_item.id }}" name="nameIngredient_{{ ingredient_item.id }}" type="hidden" value="{{ ingredient_item.ingredient.name }}">
                                 <input id="valueIngredient_{{ ingredient_item.id }}" name="valueIngredient_{{ ingredient_item.id }}" type="hidden" value="{{ ingredient_item.weight }}">

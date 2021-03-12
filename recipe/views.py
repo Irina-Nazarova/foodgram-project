@@ -13,7 +13,7 @@ from recipe.models import (
     RecipeIngredient,
     FavoriteRecipe,
 )
-from recipe.utils import generate_shop_list, pagination
+from recipe.utils import generate_shop_list, pagination, is_positive_weight
 
 
 def index(request):
@@ -41,19 +41,22 @@ def recipe_create(request):
         files=request.FILES or None,
         initial={"request": request},
     )
+    context = {}
+    if not is_positive_weight(request):
+        context["ingredient_value_message"] = "Weight should be greater than 0"
 
-    if form.is_valid():
+    elif form.is_valid():
         form.save()
         return redirect("index")
 
-    context = {
+    context.update({
         "name": "name",
         "form": form,
         "description": "description",
         "cook_time": "cook_time",
         "picture": "picture",
         "active_create": active_create,
-    }
+    })
     return render(request, "recipe/recipe_action.html", context)
 
 
@@ -68,16 +71,19 @@ def recipe_edit(request, recipe_id):
         instance=recipe,
         initial={"request": request},
     )
-
-    if form.is_valid():
-        RecipeIngredient.objects.filter(recipe=recipe).delete()
-        form.save()
-        return redirect("index")
+    data = {}
+    if not is_positive_weight(request):
+        data["ingredient_value_message"] = 'Weight should be greater than 0'
+    elif form.is_valid():
+            RecipeIngredient.objects.filter(recipe=recipe).delete()
+            form.save()
+            return redirect("index")
+    data["form"] = form
+    data["recipe"] = recipe
 
     return render(
-        request, "recipe/recipe_action.html", {"form": form, "recipe": recipe}
+        request, "recipe/recipe_action.html", data
     )
-
 
 @login_required
 def recipe_delete(request, recipe_id):
@@ -213,3 +219,5 @@ def download(request):
     p.showPage()
     p.save()
     return response
+
+

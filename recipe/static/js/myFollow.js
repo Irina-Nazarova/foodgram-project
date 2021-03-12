@@ -5,15 +5,14 @@ const header = new Header(counterId);
 const configButton = {
     subscribe: {
         attr: 'data-out',
-        active: {
-            class: 'button_style_blue',
-            text: `Follow`
-        },
         default: {
             class: 'button_style_blue',
-            text: 'Unfollow'
+            text: 'Follow'
         },
-
+        active: {
+            class: 'button_style_blue',
+            text: `Unfollow`
+        }
     }
 }
 const subscribe = new Subscribe(configButton.subscribe, api);
